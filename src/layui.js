@@ -16,6 +16,7 @@
     },
         modules = {//内置模块路径
             element : 'modules/element',//常用元素模
+            layer : 'modules/layer',//弹层模块
             jquery : 'modules/jquery'//jq模块
     },
     //获取layui.js所在的目录
@@ -123,6 +124,8 @@
                 config.modules[item] = url;
             }
         };
+    //记录基础数据
+    Layui.prototype.cache = config;
     //自定义模块事件
     Layui.prototype.onevent = function(modName,events,callback){
         if(typeof modName !== 'string' || typeof callback !== 'function'){return this};
@@ -185,6 +188,49 @@
         result.ios = result.os === 'ios';
 
         return result;
+    }
+    //获取节点的style属性值(外部样式)
+    Layui.prototype.getStyle = function(node,name){
+        var style = node.currentStyle ? node.currentStyle : win.getComputedStyle(node,null);//浏览器兼容（ie currentStyle）
+        return style[style.getPropertyValue ? 'getPropertyValue' : 'getAttribute'](name);//获取属性值(基本可以总结为attribute节点都是在HTML代码中可见的，而property只是一个普通的名值对属性。)
+    }
+    //css外部加载
+    Layui.prototype.link = function(href,fn,cssname){
+        var that = this,
+            link = doc.createElement('link'),
+            head = doc.getElementsByTagName('head')[0];
+
+            if(typeof fn == 'string'){//当无回调函数参数时
+                cssname = fn;
+            }
+            var app = (cssname || href).replace(/\.|\//g,''),
+                id = link.id = 'layuicss-' + app,
+                timeout = 0;
+            link.rel = 'stylesheet';
+            link.href = href + (config.debug ? '?v=' + new Date().getTime() : '');
+
+            link.media = 'all';
+            if(!doc.getElementById(id)){
+                head.appendChild(link);
+            }
+
+            if(typeof fn !== 'function'){return that}
+
+            //轮询css是否加载完毕
+            (function poll(){
+                if(++timeout > config.timeout * 1000 / 100){
+                    return error (href + ' timeout');//加载css超时
+                };
+                parseInt(that.getStyle(doc.getElementById(id),'width')) === 1989 ? function(){
+                        fn();
+                    }() : setTimeout(poll,100)
+            }())
+            return that;
+    }
+    //加载样式(css内部加载)
+    //config.dir + 'css/' + firename为css的绝对路径
+    Layui.prototype.addcss = function(firename,fn,cssname){
+        return layui.link(config.dir + 'css/' + firename,fn,cssname)
     }
     //遍历方法
     Layui.prototype.each = function(obj,fn){

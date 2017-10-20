@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .layer{
+        position:absolute;
+        top:40px;
+        left:0;
+    }
+</style>
+<body>
+<button onclick="aaa()">添加个东西</button>
+</body>
+<script src="../src/layui.js"></script>
+<script>
+    layui.use('jquery',function($){
+        function aaa(){
+            var html = '<div class="layer" style="border:1px solid red;width:100px;height:200px"><p>我是测试内容</p></div>';
+            $('body').append(html);
+            $('.layer').css({'top':'50px','left':'100px'});
+        }
+        window.aaa = aaa;
+    })
+</script>
+</html>
