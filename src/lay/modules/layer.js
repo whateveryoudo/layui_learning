@@ -87,6 +87,7 @@
         icon : -1,
         moveType : 1,
         resize : true,
+        moveOut : false,//是否允许移除窗口外
         scrollbar : true,
         tips : 2
     }
@@ -238,7 +239,7 @@
             'left' : that.offsetLeft,
         })
     }
-    //拖拽
+    //拖拽(牛皮)
     Class.pt.move = function(){
         var that = this,
             config = that.config,
@@ -251,11 +252,43 @@
             moveElem.css('cursor','move');
         }
         moveElem.on('mousedown',function(e){
-
+            e.preventDefault();
+            if(config.move){
+                dict.moveStart = true;
+                dict.offset = [//计算鼠标点距离弹层的距离
+                    e.clientX - parseFloat(layero.css('left')),
+                    e.clientY - parseFloat(layero.css('top'))
+                ]
+                ready.moveElem.css('cursor','move');
+            }
         })
         _DOC.on('mousemove',function(e){
-
-        }).on('mouseup',function(e){});
+            if(dict.moveStart){
+                var X = e.clientX - dict.offset[0],//移动后弹层的left
+                    Y = e.clientY - dict.offset[1],//移动后弹层的top
+                    fixed = layero.css('position') === 'fixed';//是否固定在视口
+                e.preventDefault();
+                    //随页面滚动（需要加上滚动的距离）
+                dict.stX = fixed ? 0 : win.scrollLeft();
+                dict.stY = fixed ? 0 : win.scrollTop();
+                //临界值判断(是否允许拖拽出窗口外)
+                if(!config.moveOut){
+                    var setRig = win.width() - layero.outerWidth() + dict.stX,//向右移动的最大距离
+                        setBot = win.height() - layero.outerHeight() + dict.stY;//向下的最大距离
+                    X < dict.stX && (X = dict.stX);
+                    X > setRig && (X = setRig);
+                    Y < dict.stY && (Y = dict.stY);
+                    Y > setBot && (Y = setBot);
+                }
+                layero.css({left: X,top : Y});
+            }
+        }).on('mouseup',function(e){
+            if(dict.moveStart){
+                delete dict.moveStart;
+                ready.moveElem.hide();//不明白这个元素的作用
+                config.moveEnd && config.moveEnd(layero);
+            }
+        });
 
         return that;
     }

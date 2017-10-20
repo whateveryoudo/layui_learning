@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="604c973b-7204-4093-8093-d68adc43e024" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/modules/layer/default/icon-ext.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/modules/layer/default/icon.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/modules/layer/default/loading-0.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/modules/layer/default/loading-1.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/modules/layer/default/loading-2.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/layer.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/test.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/css/modules/layer/default/layer.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lay/modules/layer.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/layui.js" afterPath="$PROJECT_DIR$/src/layui.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lay/modules/layer.js" afterPath="$PROJECT_DIR$/src/lay/modules/layer.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,89 +18,68 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="layui.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/layui.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="18" column="36" lean-forward="false" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="e#1652#4763#0" expanded="false" />
-                <element signature="e#6119#6499#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="element.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lay/modules/element.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-              <folding>
-                <marker date="1508302172266" expanded="true" signature="3017:3025" ph="..." />
-                <marker date="1508302172266" expanded="true" signature="3371:3379" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layer.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/example/layer.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="layer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/lay/modules/layer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="622">
-              <caret line="253" column="0" lean-forward="false" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
+            <state relative-caret-position="336">
+              <caret line="286" column="38" lean-forward="true" selection-start-line="286" selection-start-column="38" selection-end-line="286" selection-end-column="38" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#193#396#0" expanded="false" />
+                <element signature="e#582#1539#0" expanded="false" />
+                <element signature="e#1075#1130#0" expanded="false" />
+                <element signature="e#1210#1526#0" expanded="false" />
+                <element signature="e#1258#1366#0" expanded="false" />
+                <element signature="e#1569#1797#0" expanded="false" />
                 <element signature="e#1833#2286#0" expanded="false" />
-                <element signature="e#2829#3282#0" expanded="false" />
-                <element signature="e#3340#6431#0" expanded="false" />
-                <element signature="e#6474#9243#0" expanded="false" />
-                <element signature="e#9291#10449#0" expanded="false" />
-                <element signature="e#12631#12829#0" expanded="false" />
-                <element signature="e#12962#13164#0" expanded="false" />
-                <marker date="1508495122230" expanded="true" signature="3986:3993" ph="..." />
-                <marker date="1508495122230" expanded="true" signature="3986:3994" ph="..." />
-                <marker date="1508495122230" expanded="true" signature="4425:4433" ph="..." />
-                <marker date="1508495122230" expanded="true" signature="4425:4452" ph="..." />
-                <marker date="1508495122230" expanded="true" signature="4425:4479" ph="..." />
-                <marker date="1508495122230" expanded="true" signature="4425:4539" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/example/test.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="18" column="35" lean-forward="false" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
-              <folding>
-                <marker date="1508478429524" expanded="true" signature="409:454" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jquery.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lay/modules/jquery.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263256">
-              <caret line="10981" column="25" lean-forward="false" selection-start-line="10981" selection-start-column="25" selection-end-line="10981" selection-end-column="25" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#1908#2188#0" expanded="false" />
+                <element signature="e#2556#2760#0" expanded="false" />
+                <element signature="e#3376#6467#0" expanded="false" />
+                <element signature="e#3882#6386#0" expanded="false" />
+                <element signature="e#4065#4079#0" expanded="false" />
+                <element signature="e#5267#5706#0" expanded="false" />
+                <element signature="e#5762#6257#0" expanded="false" />
+                <element signature="e#5983#6093#0" expanded="false" />
+                <element signature="e#6510#9279#0" expanded="false" />
+                <element signature="e#6844#6931#0" expanded="false" />
+                <element signature="e#6940#7090#0" expanded="false" />
+                <element signature="e#7100#7253#0" expanded="false" />
+                <element signature="e#7315#8189#0" expanded="false" />
+                <element signature="e#7389#7981#0" expanded="false" />
+                <element signature="e#7462#7540#0" expanded="false" />
+                <element signature="e#7555#7960#0" expanded="false" />
+                <element signature="e#7623#7934#0" expanded="false" />
+                <element signature="e#8257#8384#0" expanded="false" />
+                <element signature="e#8505#8608#0" expanded="false" />
+                <element signature="e#8545#8597#0" expanded="false" />
+                <element signature="e#8676#8724#0" expanded="false" />
+                <element signature="e#8840#9167#0" expanded="false" />
+                <element signature="e#9061#9156#0" expanded="false" />
+                <element signature="e#9214#9273#0" expanded="false" />
+                <element signature="e#9327#10485#0" expanded="false" />
+                <element signature="e#9640#9776#0" expanded="false" />
+                <element signature="e#9809#9842#0" expanded="false" />
+                <element signature="e#9890#10358#0" expanded="false" />
+                <element signature="e#10218#10228#0" expanded="false" />
+                <element signature="e#10393#10478#0" expanded="false" />
+                <element signature="e#12595#12895#0" expanded="false" />
+                <element signature="e#12689#12815#0" expanded="false" />
+                <element signature="e#12900#12912#0" expanded="false" />
+                <element signature="e#12985#14142#0" expanded="false" />
+                <element signature="e#13180#13706#0" expanded="false" />
+                <element signature="e#13259#13696#0" expanded="false" />
+                <element signature="e#13260#13268#0" expanded="false" />
+                <element signature="e#13511#13565#0" expanded="false" />
+                <element signature="e#13762#13829#0" expanded="false" />
+                <element signature="e#14008#14041#0" expanded="false" />
+                <element signature="e#14045#14136#0" expanded="false" />
+                <element signature="e#14080#14121#0" expanded="false" />
+                <element signature="e#14181#14379#0" expanded="false" />
+                <element signature="e#14293#14373#0" expanded="false" />
+                <element signature="e#14512#14714#0" expanded="false" />
+                <element signature="e#14802#14866#0" expanded="false" />
+                <element signature="e#14880#14988#0" expanded="false" />
+                <marker date="1508518259433" expanded="false" signature="4022:4030" ph="..." />
+                <marker date="1508518259433" expanded="false" signature="4461:4575" ph="..." />
               </folding>
             </state>
           </provider>
@@ -118,18 +88,28 @@
       <file leaf-file-name="element.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example/element.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="412" column="24" lean-forward="false" selection-start-line="412" selection-start-column="24" selection-end-line="412" selection-end-column="24" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layui.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/css/layui.css">
+      <file leaf-file-name="layer.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/example/layer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21480">
-              <caret line="895" column="30" lean-forward="false" selection-start-line="895" selection-start-column="19" selection-end-line="895" selection-end-column="30" />
+            <state relative-caret-position="333">
+              <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -147,7 +127,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>status</find>
       <find>222</find>
       <find>111</find>
       <find>event</find>
@@ -177,6 +156,7 @@
       <find>layui-layer-move</find>
       <find>close</find>
       <find>creat</find>
+      <find>moveOut</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -226,8 +206,20 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layui_learning" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layui_learning" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="layui_learning" />
@@ -280,8 +272,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -289,7 +279,7 @@
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../layui" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -378,17 +368,18 @@
       <workItem from="1508168027659" duration="2000" />
       <workItem from="1508168254241" duration="5336000" />
       <workItem from="1508302186152" duration="26013000" />
+      <workItem from="1508515733276" duration="2308000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51674000" />
+    <option name="totallyTimeSpent" value="53982000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1924" height="1048" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25965664" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22540541" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -418,227 +409,30 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/layui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3504">
-          <caret line="149" column="41" lean-forward="false" selection-start-line="149" selection-start-column="41" selection-end-line="149" selection-end-column="41" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#1652#4763#0" expanded="false" />
-            <element signature="e#6119#6499#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lay/modules/element.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1508302172266" expanded="true" signature="3017:3025" ph="..." />
-            <marker date="1508302172266" expanded="true" signature="3371:3379" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lay/modules/jquery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263256">
-          <caret line="10981" column="25" lean-forward="false" selection-start-line="10981" selection-start-column="25" selection-end-line="10981" selection-end-column="25" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/element.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9888">
-          <caret line="412" column="24" lean-forward="false" selection-start-line="412" selection-start-column="24" selection-end-line="412" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/css/layui.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21480">
-          <caret line="895" column="30" lean-forward="false" selection-start-line="895" selection-start-column="19" selection-end-line="895" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/layui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5254">
-          <caret line="145" column="17" lean-forward="false" selection-start-line="145" selection-start-column="17" selection-end-line="145" selection-end-column="17" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#1652#4763#0" expanded="false" />
-            <element signature="e#6119#6499#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lay/modules/element.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1508302172266" expanded="true" signature="3017:3025" ph="..." />
-            <marker date="1508302172266" expanded="true" signature="3371:3379" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lay/modules/jquery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406297">
-          <caret line="10981" column="25" lean-forward="false" selection-start-line="10981" selection-start-column="25" selection-end-line="10981" selection-end-column="25" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/element.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15429">
-          <caret line="417" column="31" lean-forward="false" selection-start-line="417" selection-start-column="31" selection-end-line="417" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/css/layui.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/layui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5365">
-          <caret line="145" column="17" lean-forward="false" selection-start-line="145" selection-start-column="17" selection-end-line="145" selection-end-column="17" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#1652#4763#0" expanded="false" />
-            <element signature="e#6119#6499#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lay/modules/element.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1508302172266" expanded="true" signature="3017:3025" ph="..." />
-            <marker date="1508302172266" expanded="true" signature="3371:3379" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lay/modules/jquery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405853">
-          <caret line="10981" column="25" lean-forward="false" selection-start-line="10981" selection-start-column="25" selection-end-line="10981" selection-end-column="25" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/element.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15429">
-          <caret line="417" column="31" lean-forward="false" selection-start-line="417" selection-start-column="31" selection-end-line="417" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/css/layui.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lay/modules/jquery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263256">
-          <caret line="10981" column="25" lean-forward="false" selection-start-line="10981" selection-start-column="25" selection-end-line="10981" selection-end-column="25" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/css/layui.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21480">
-          <caret line="895" column="30" lean-forward="false" selection-start-line="895" selection-start-column="19" selection-end-line="895" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lay/modules/element.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-          <folding>
-            <marker date="1508302172266" expanded="true" signature="3017:3025" ph="..." />
-            <marker date="1508302172266" expanded="true" signature="3371:3379" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/layui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="18" column="36" lean-forward="false" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#1652#4763#0" expanded="false" />
-            <element signature="e#6119#6499#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="18" column="35" lean-forward="false" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
-          <folding>
-            <marker date="1508478429524" expanded="true" signature="409:454" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/element.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="412" column="24" lean-forward="false" selection-start-line="412" selection-start-column="24" selection-end-line="412" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/layer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/layui.js" />
+    <entry file="file://$PROJECT_DIR$/src/lay/modules/element.js" />
+    <entry file="file://$PROJECT_DIR$/src/lay/modules/jquery.js" />
+    <entry file="file://$PROJECT_DIR$/example/element.html" />
+    <entry file="file://$PROJECT_DIR$/src/css/layui.css" />
+    <entry file="file://$PROJECT_DIR$/src/layui.js" />
+    <entry file="file://$PROJECT_DIR$/src/lay/modules/element.js" />
+    <entry file="file://$PROJECT_DIR$/src/lay/modules/jquery.js" />
+    <entry file="file://$PROJECT_DIR$/example/element.html" />
+    <entry file="file://$PROJECT_DIR$/src/css/layui.css" />
+    <entry file="file://$PROJECT_DIR$/src/layui.js" />
+    <entry file="file://$PROJECT_DIR$/src/lay/modules/element.js" />
+    <entry file="file://$PROJECT_DIR$/src/lay/modules/jquery.js" />
+    <entry file="file://$PROJECT_DIR$/example/element.html" />
+    <entry file="file://$PROJECT_DIR$/src/css/layui.css" />
+    <entry file="file://$PROJECT_DIR$/src/lay/modules/jquery.js" />
+    <entry file="file://$PROJECT_DIR$/src/css/layui.css" />
+    <entry file="file://$PROJECT_DIR$/src/lay/modules/element.js" />
+    <entry file="file://$PROJECT_DIR$/src/layui.js" />
+    <entry file="file://$PROJECT_DIR$/example/test.html" />
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
           <caret line="1599" column="0" lean-forward="false" selection-start-line="1599" selection-start-column="0" selection-end-line="1599" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -650,25 +444,91 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/element.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/layer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/lay/modules/layer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="622">
-          <caret line="253" column="0" lean-forward="false" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
+        <state relative-caret-position="336">
+          <caret line="286" column="38" lean-forward="true" selection-start-line="286" selection-start-column="38" selection-end-line="286" selection-end-column="38" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#193#396#0" expanded="false" />
+            <element signature="e#582#1539#0" expanded="false" />
+            <element signature="e#1075#1130#0" expanded="false" />
+            <element signature="e#1210#1526#0" expanded="false" />
+            <element signature="e#1258#1366#0" expanded="false" />
+            <element signature="e#1569#1797#0" expanded="false" />
             <element signature="e#1833#2286#0" expanded="false" />
-            <element signature="e#2829#3282#0" expanded="false" />
-            <element signature="e#3340#6431#0" expanded="false" />
-            <element signature="e#6474#9243#0" expanded="false" />
-            <element signature="e#9291#10449#0" expanded="false" />
-            <element signature="e#12631#12829#0" expanded="false" />
-            <element signature="e#12962#13164#0" expanded="false" />
-            <marker date="1508495122230" expanded="true" signature="3986:3993" ph="..." />
-            <marker date="1508495122230" expanded="true" signature="3986:3994" ph="..." />
-            <marker date="1508495122230" expanded="true" signature="4425:4433" ph="..." />
-            <marker date="1508495122230" expanded="true" signature="4425:4452" ph="..." />
-            <marker date="1508495122230" expanded="true" signature="4425:4479" ph="..." />
-            <marker date="1508495122230" expanded="true" signature="4425:4539" ph="..." />
+            <element signature="e#1908#2188#0" expanded="false" />
+            <element signature="e#2556#2760#0" expanded="false" />
+            <element signature="e#3376#6467#0" expanded="false" />
+            <element signature="e#3882#6386#0" expanded="false" />
+            <element signature="e#4065#4079#0" expanded="false" />
+            <element signature="e#5267#5706#0" expanded="false" />
+            <element signature="e#5762#6257#0" expanded="false" />
+            <element signature="e#5983#6093#0" expanded="false" />
+            <element signature="e#6510#9279#0" expanded="false" />
+            <element signature="e#6844#6931#0" expanded="false" />
+            <element signature="e#6940#7090#0" expanded="false" />
+            <element signature="e#7100#7253#0" expanded="false" />
+            <element signature="e#7315#8189#0" expanded="false" />
+            <element signature="e#7389#7981#0" expanded="false" />
+            <element signature="e#7462#7540#0" expanded="false" />
+            <element signature="e#7555#7960#0" expanded="false" />
+            <element signature="e#7623#7934#0" expanded="false" />
+            <element signature="e#8257#8384#0" expanded="false" />
+            <element signature="e#8505#8608#0" expanded="false" />
+            <element signature="e#8545#8597#0" expanded="false" />
+            <element signature="e#8676#8724#0" expanded="false" />
+            <element signature="e#8840#9167#0" expanded="false" />
+            <element signature="e#9061#9156#0" expanded="false" />
+            <element signature="e#9214#9273#0" expanded="false" />
+            <element signature="e#9327#10485#0" expanded="false" />
+            <element signature="e#9640#9776#0" expanded="false" />
+            <element signature="e#9809#9842#0" expanded="false" />
+            <element signature="e#9890#10358#0" expanded="false" />
+            <element signature="e#10218#10228#0" expanded="false" />
+            <element signature="e#10393#10478#0" expanded="false" />
+            <element signature="e#12595#12895#0" expanded="false" />
+            <element signature="e#12689#12815#0" expanded="false" />
+            <element signature="e#12900#12912#0" expanded="false" />
+            <element signature="e#12985#14142#0" expanded="false" />
+            <element signature="e#13180#13706#0" expanded="false" />
+            <element signature="e#13259#13696#0" expanded="false" />
+            <element signature="e#13260#13268#0" expanded="false" />
+            <element signature="e#13511#13565#0" expanded="false" />
+            <element signature="e#13762#13829#0" expanded="false" />
+            <element signature="e#14008#14041#0" expanded="false" />
+            <element signature="e#14045#14136#0" expanded="false" />
+            <element signature="e#14080#14121#0" expanded="false" />
+            <element signature="e#14181#14379#0" expanded="false" />
+            <element signature="e#14293#14373#0" expanded="false" />
+            <element signature="e#14512#14714#0" expanded="false" />
+            <element signature="e#14802#14866#0" expanded="false" />
+            <element signature="e#14880#14988#0" expanded="false" />
+            <marker date="1508518259433" expanded="false" signature="4022:4030" ph="..." />
+            <marker date="1508518259433" expanded="false" signature="4461:4575" ph="..." />
           </folding>
         </state>
       </provider>
