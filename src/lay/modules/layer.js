@@ -9,7 +9,7 @@
             var style = node.currentStyle ? node.currentStyle : node.getComputedStyle(node,null);
             return style[style.getPropertyValue ? 'getPropertyValue' : 'getAttribute'](name);
         },
-        config : {},
+        config : {},end : {},
         btn : ['&#x786E;&#x5B9A;', '&#x53D6;&#x6D88;'],
         type : ['dialog','page','iframe','loading','tips'],//原始层形式
         link : function(href,fn,cssname){
@@ -59,10 +59,75 @@
         },
         index : window.layer && window.layer.v ? 100000 : 0,
         path : ready.getPath,
+        //快捷使用
+        alert : function(content,options,yes){//yes为点击确定的回调函数
+            var type = typeof options === 'function';
+            if(type){yes = options};//两个入参
+
+            return layer.open($.extend({
+                content : content,
+                yes : yes
+            },type ? {} : options));
+        },
+        confirm : function(content,options,yes,cancel){//确认框
+            var type = typeof options === 'function';
+            if(type){//无选项参数时
+                cancel = yes;
+                yes = options;
+            }
+            return layer.open($.extend({
+                content : content,
+                yes : yes,
+                btn : ready.btn,
+                btn2 : cancel
+            },type ? {} : options));//无选项参数传入空对象
+        },
+        msg : function(content,options,end){//msg
+            var type = typeof options === 'function',rskin = ready.config.skin;//默认皮肤class
+            var skin= (rskin ? rskin + ' ' + rskin + '-msg' : '') || 'layui-layer-msg';
+            var anim = doms.anim.length - 1;//动画类型
+            if(type){
+                end = options;
+            }
+            return layer.open($.extend({
+                content : content,
+                time :3000,
+                skin : skin,
+                title : false,
+                btn : false,
+                shade : false,
+                resize : false,
+                closeBtn : false,
+                end : end
+            },(type && !ready.config.skin) ? {//含有回调函数时，使用shake
+                    skin : skin + ' layui-layer-hui',
+                    anim : anim
+                } : function(){
+
+                       options = options || {};
+                       if(options.icon === -1 || options.icon === undefiend && !ready.config.skin){
+                           options.skin = skin + ' ' + (options.skin || 'layui-layer-hui');
+                       }
+
+                       return options;
+                }()));
+        },
+        tips : function(content,follow,options){
+            return layer.open($.extend({
+                type : 4,
+                content : [content,follow],
+                closeBtn : false,
+                shade : false,
+                time : 3000,
+                resize : false,
+                fixed : false,
+                maxWidth : 200
+            },options));
+        }
     }
     //缓存常用字符串
     var doms = ['layui-layer','.layui-layer-title','.layui-layer-main','.layui-layer-dialog','layui-layer-iframe','layui-layer-content','layui-layer-btn','layui-layer-close'];
-    doms.anim = ['layer-anim-00'];//动画类型class
+    doms.anim = ['layer-anim-00','layer-anim-01', 'layer-anim-02', 'layer-anim-03', 'layer-anim-04', 'layer-anim-05', 'layer-anim-06'];//动画类型class
     var Class = function(setings){
         var that = this;
         that.index = ++layer.index;
@@ -76,6 +141,7 @@
         type : 0,//弹层类型
         shade : 0.3,//遮罩透明度
         fixed : true,//是否随页面滚动
+        title : '&#x4FE1;&#x606F;',//默认title(信息)
         area : 'auto',//弹层区域大小
         closeBtn : 1,//默认显示关闭按钮
         move : doms[1],//drag区域classname
@@ -105,7 +171,7 @@
             //遮罩
             config.shade ? ('<div class="layui-layer-shade" id="layui-layer-shade'+times+'" times="'+times+'" style="'+('z-index:' + (zIndex - 1))+'"></div>') : '',//遮罩为弹层index-1
             //弹层主体
-            '<div class="' + doms[0] + (' layui-layer-' +ready.type[config.type]) +(((config.type == 0 || config.type == 2) && !config.shade) ? 'layui-layer-border' : '')+ ' ' + (config.skin || '') + '" id="'+doms[0] + times +'" type="'+ready.type[config.type]+'" times="'+times+'" showtime="'+config.time+'" conType="'+(conType ? 'object' : 'string')+'" style="z-index:'+ zIndex +';width:'+ config.area[0]+';height:'+config.area[1] + (config.fixed ? '' : ';position:absoulte;')+'">'
+            '<div class="' + doms[0] + (' layui-layer-' +ready.type[config.type]) +(((config.type == 0 || config.type == 2) && !config.shade) ? ' layui-layer-border' : '')+ ' ' + (config.skin || '') + '" id="'+doms[0] + times +'" type="'+ready.type[config.type]+'" times="'+times+'" showtime="'+config.time+'" conType="'+(conType ? 'object' : 'string')+'" style="z-index:'+ zIndex +';width:'+ config.area[0]+';height:'+config.area[1] + (config.fixed ? '' : ';position:absoulte;')+'">'
             // '<div class="' + doms[0] + (' layui-layer-' +ready.type[config.type]) +(((config.type == 0 || config.type == 2) && !config.shade) ? 'layui-layer-border' : '')+ ' ' + (config.skin || '') + '" id="'+doms[0] + times +'">'+
                 +(conType && config.type != 2 ? '' : titleHTML)
                 +'<div id="'+(config.id || '')+'" class="layui-layer-content'+((config.type == 0 && config.icon !== -1) ? 'layui-layer-padding' : '') + (config.type == 3 ? ' layui-layer-loading' + config.icon : '') +'">'
@@ -149,6 +215,13 @@
             case 0:
                 config.btn = ('btn' in config) ? config.btn : ready.btn[0];
                 break;
+            case 4 : //tips层
+                conType || (config.content = [config.content,'body']);
+                config.follow = config.follow[1];//触发按钮对象
+                config.content = config.follow[0] + '<i class="layui-layer-TipsG"></i>';//内容文字+tip箭头
+                delete config.titile;
+                config.tips = typeof config.tips === 'object' ? config.tips : [config.tips,true];
+                config.tipMore || layer.closeAll('tips');//是否允许添加多个tip
         }
 
         /*
@@ -239,6 +312,65 @@
             'left' : that.offsetLeft,
         })
     }
+    //tips坐标处理
+    Class.pt.tips = function(){
+        var that = this,config = that.config,layero = that.layero;
+        var layArea = [layero.outerWidth(),layero.outerHeight()],follow = $(config.follow);//触发元素
+        if(!follow[0]){
+            follow = $('body');
+        }
+
+        //存储坐标信息对象
+        var gola = {
+            width : follow.outerWidth(),
+            height : follow.outerHeight(),
+            top : follow.offset().top,
+            left : follow.offset().left,
+        },tipsG = layero.find('.layui-layer-TipsG');//指示箭头
+
+        var guide = config.tips[0];//位置类型
+        config.tips[1] || tipsG.remove();
+
+
+        goal.autoLeft = function(){
+            //临界值判断
+            if(gola.left() + layArea[0] - win.width() > 0){
+                gola.tipLeft = gola.left + win.width - layArea[0];
+            }else{
+                gola.tipLeft = gola.left;
+            }
+        }
+        //方向数组函数
+        gola.where = [
+            function(){//上
+                goal.autoLeft();
+                gola.tipTop = gola.top - layArea[1] - 10,//top值
+                //设置箭头样式
+                tipsG.removeClass('layui-layer-TipsB').addClass('layui-layer-TipT').css('border-right-color',config.tips[1]);
+
+            }
+        ]
+
+        //初始化坐标定位
+        gola.where[guide - 1]();
+
+
+        /* 8*2为小三角形占据的空间 */
+
+        if(guide === 1){
+            gola.top - (win.scrollTop() + layArea[1] + 8 * 2) < 0 && gola.where[2]();//右边显示(向上显示不下了)
+        }
+        //是否设置关闭按钮
+        layero.find('.' + doms[5]).css({
+            'background-color' : config.tips[1],
+            'padding-right' : (config.closeBtn ? '30px' : '')
+        })
+        //设置坐标
+        layero.css({
+            left : gola.tipLeft - (config.fixed ? win.scrollLeft() : 0),
+            top : gola.tipTop - (config.fixed ? win.scrollTop() : 0)
+        })
+    }
     //拖拽(牛皮)
     Class.pt.move = function(){
         var that = this,
@@ -251,7 +383,7 @@
         if(config.move){
             moveElem.css('cursor','move');
         }
-        moveElem.on('mousedown',function(e){
+        moveElem.on('mousedown',function(e){//title拖拽
             e.preventDefault();
             if(config.move){
                 dict.moveStart = true;
@@ -262,8 +394,17 @@
                 ready.moveElem.css('cursor','move');
             }
         })
+
+        resizeElem.on('mousedown',function(e){//右下角拉伸
+            e.preventDefault();
+            dict.resizeStart = true;
+            dict.offset = [e.clientX,e.clientY];
+            dict.area = [layero.outerWidth(),layero.outerHeight()];
+
+            ready.moveElem.css('cursor','se-resize');
+        })
         _DOC.on('mousemove',function(e){
-            if(dict.moveStart){
+            if(dict.moveStart){//开启移动
                 var X = e.clientX - dict.offset[0],//移动后弹层的left
                     Y = e.clientY - dict.offset[1],//移动后弹层的top
                     fixed = layero.css('position') === 'fixed';//是否固定在视口
@@ -282,25 +423,62 @@
                 }
                 layero.css({left: X,top : Y});
             }
+            //右下角拉伸缩放
+            if(config.resize && dict.resizeStart){
+                var X = e.clientX - dict.offset[0],
+                    Y = e.clientY - dict.offset[1];
+
+                e.preventDefault();
+
+                //设置弹层样式
+                layer.style(that.index,{//X,Y可能为负值
+                    width : dict.area[0] + X,
+                    height : dict.area[1] + Y
+                })
+                dict.isResize = true;
+                config.resizing && config.resizing(layero);
+            }
         }).on('mouseup',function(e){
-            if(dict.moveStart){
+            if(dict.moveStart){//关闭移动
                 delete dict.moveStart;
                 ready.moveElem.hide();//不明白这个元素的作用
                 config.moveEnd && config.moveEnd(layero);
             }
-        });
 
+            if(dict.resizeStart){//关闭拉伸
+                delete dict.resizeStart;
+                ready.moveElem.hide();
+            }
+        });
         return that;
     }
     //绑定事件
     Class.pt.callback = function(){
         var that = this,config = that.config,layero = that.layero;
+        //按钮绑定事件
+        layero.find('.' + doms[6]).children('a').on('click',function(){
+            var index = $(this).index();
+            if(index == 0){//第一个按钮处理事件
+                if(config.yes){
+                    config.yes(that.index,layero);
+                }else if(config['btn1']){
+                    config['btn1'](that.index,layero);
+                }else{//取消
+                    layer.close(that.index);
+                }
+            }else{//index+1按钮事件(callback使用 return false则不会关闭弹层)
+                var close = config['btn' + (index + 1)] && config['btn' + (index + 1)](that.index,layero);
+                close === false || layer.close(that.index);
+            }
+        })
         function cancel(){
             // var close = config.cancel && config.cancel(that.index,layero);
             layer.close(that.index);
         }
         //右上角关闭的回调
         layero.find('.' + doms[7]).on('click',cancel);
+        //判断end事件是否存在
+        config.end && (ready.end[that.index] = config.end)
     }
     /***内置成员***/
     window.layer = layer;
@@ -313,13 +491,20 @@
                 //移除layui-layer-content以外的元素
                 layero.children(":not(."+doms[5]+")").remove();
                 //找到内容体(去除两层父级元素,只留下本身)
+
                 var wrap = layero.find('.' + WRAP);
                 for(var i = 0;i < 2;i ++){
                     wrap.unwrap();
                 }
                 //设置为原来的css样式,并去掉容器class
                 wrap.css('display',wrap.data('display')).removeClass(WRAP);
+            }else{
+                layero[0].innerHTML = '';
+                layero.remove();
             }
+            typeof ready.end[index] === 'function' && ready.end[index]();
+
+            delete ready.end[index];
         }
         //是否添加消失动画
         if(layero.data('isOutAnim')){
@@ -327,7 +512,6 @@
         }
         //去除shade 触发移动元素
         $('#layui-layer-moves,#layui-layer-shade' + index).remove();
-
         //去除主体
         if((layer.ie && layer.ie < 10) || !layero.data('isOutAnim')){
             remove();
@@ -337,33 +521,60 @@
             },200)
         }
     }
+    //设置指定层的样式
+    layer.style = function(index,options,limit){
+        var layero = $("#" + doms[0] + index),
+            contElem = layero.find('.layui-layer-content'),
+            type = layero.attr('type'),
+            titleHeight = layero.find(doms[1]).outerHeight() || 0,
+            btnHeight = layero.find('.' + doms[6]).outerHeight() || 0,
+            minLeft = layero.attr('minLeft');
+
+        if(type === ready.type[3] || type === ready.type[4]){//loading层 tips层
+            return;
+        }
+
+        if(!limit){
+            if(parseFloat(options.width) <= 260){//最小宽度
+                options.width = 260;
+            }
+            if(parseFloat(options.height) - titleHeight - btnHeight <= 64){//设置碳层的临界值
+                options.height = 64 + titleHeight + btnHeight;
+            }
+        }
+
+        layero.css(options);//设置content宽高
+        btnHeight = layero.find('.' + doms[6]).outerHeight();
+
+        contElem.css({//重新设置内容体高度(之前写在标签中)
+            height : parseFloat(options.height) - titleHeight - btnHeight
+            - parseFloat(contElem.css('padding-top')) - parseFloat(contElem.css('padding-bottom'))
+        })
+    }
     //主入口
     ready.run = function(_$){
         $ = _$;
         win = $(window);
         doms.html = $('html');
         layer.open = function(deliver){
-
             var o = new Class(deliver);
             return o.index;
         }
     }
     //加载方式
-    window.layui && layui.define ? (
+    window.layui && layui.define ? (//layuiJs加载
             layer.ready(),
                 layui.define(['jquery'],function(exports){
                     layer.path = layui.cache.dir;
                     ready.run(layui.jquery);
 
-
                     window.layer = layer;
                     exports('layer',layer);
                 })
-
         ) : (
-            typeof define === 'function' ? define(['jquery'],function(){
+            typeof define === 'function' ? define(['jquery'],function(){//requireJs加载
                     ready.run(window.jQuery)
-                }) : function(){
+                }) : function(){//普通js加载
                         ready.run(window.jQuery);
                         layer.ready();
                 }()
