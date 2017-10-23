@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="604c973b-7204-4093-8093-d68adc43e024" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example/digui.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/example/layer.html" afterPath="$PROJECT_DIR$/example/layer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lay/modules/layer.js" afterPath="$PROJECT_DIR$/src/lay/modules/layer.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,11 +17,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="layer.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="layer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/lay/modules/layer.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="375">
-              <caret line="361" column="8" lean-forward="true" selection-start-line="361" selection-start-column="8" selection-end-line="361" selection-end-column="8" />
+              <caret line="361" column="9" lean-forward="true" selection-start-line="361" selection-start-column="9" selection-end-line="361" selection-end-column="9" />
               <folding>
                 <element signature="e#193#396#0" expanded="false" />
                 <element signature="e#591#1548#0" expanded="false" />
@@ -34,6 +31,8 @@
                 <element signature="e#1578#1806#0" expanded="false" />
                 <element signature="e#1917#2197#0" expanded="false" />
                 <element signature="e#2350#2613#0" expanded="false" />
+                <element signature="e#2669#3059#0" expanded="false" />
+                <element signature="e#3104#4244#0" expanded="false" />
                 <element signature="e#6563#6577#0" expanded="false" />
                 <element signature="e#7766#8205#0" expanded="false" />
                 <element signature="e#8261#8756#0" expanded="false" />
@@ -60,8 +59,6 @@
                 <element signature="e#19450#19462#0" expanded="false" />
                 <element signature="e#19810#19818#0" expanded="false" />
                 <element signature="e#20961#22042#0" expanded="false" />
-                <marker date="1508690659955" expanded="false" signature="2669:3059" ph="{...}" />
-                <marker date="1508690659955" expanded="false" signature="3104:4244" ph="{...}" />
                 <marker date="1508690659955" expanded="false" signature="6520:6528" ph="..." />
                 <marker date="1508690659955" expanded="true" signature="6960:7074" ph="..." />
               </folding>
@@ -72,8 +69,8 @@
       <file leaf-file-name="layer.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/css/modules/layer/default/layer.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+            <state relative-caret-position="1887">
+              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -95,7 +92,7 @@
       <file leaf-file-name="layui.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/layui.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
+            <state relative-caret-position="8843">
               <caret line="242" column="26" lean-forward="true" selection-start-line="242" selection-start-column="26" selection-end-line="242" selection-end-column="26" />
               <folding />
             </state>
@@ -112,11 +109,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layer.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="layer.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/example/layer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="67" column="23" lean-forward="true" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
+            <state relative-caret-position="518">
+              <caret line="80" column="9" lean-forward="true" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -235,7 +232,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -348,6 +344,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -444,24 +441,25 @@
       <workItem from="1508168027659" duration="2000" />
       <workItem from="1508168254241" duration="5336000" />
       <workItem from="1508302186152" duration="26013000" />
-      <workItem from="1508515733276" duration="17298000" />
+      <workItem from="1508515733276" duration="17633000" />
+      <workItem from="1508768099372" duration="113000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68972000" />
+    <option name="totallyTimeSpent" value="69420000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1924" height="1048" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22540541" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22864865" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -487,6 +485,112 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/lay/modules/layer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#193#396#0" expanded="false" />
+            <element signature="e#591#1548#0" expanded="false" />
+            <element signature="e#1084#1139#0" expanded="false" />
+            <element signature="e#1219#1535#0" expanded="false" />
+            <element signature="e#1267#1375#0" expanded="false" />
+            <element signature="e#1578#1806#0" expanded="false" />
+            <element signature="e#1917#2197#0" expanded="false" />
+            <element signature="e#2350#2613#0" expanded="false" />
+            <element signature="e#2669#3059#0" expanded="false" />
+            <element signature="e#3104#4244#0" expanded="false" />
+            <element signature="e#6563#6577#0" expanded="false" />
+            <element signature="e#7766#8205#0" expanded="false" />
+            <element signature="e#8261#8756#0" expanded="false" />
+            <element signature="e#8482#8592#0" expanded="false" />
+            <element signature="e#9343#9430#0" expanded="false" />
+            <element signature="e#10065#10218#0" expanded="false" />
+            <element signature="e#10280#11154#0" expanded="false" />
+            <element signature="e#10354#10946#0" expanded="false" />
+            <element signature="e#10427#10505#0" expanded="false" />
+            <element signature="e#10520#10925#0" expanded="false" />
+            <element signature="e#10588#10899#0" expanded="false" />
+            <element signature="e#11222#11349#0" expanded="false" />
+            <element signature="e#11470#11573#0" expanded="false" />
+            <element signature="e#11510#11562#0" expanded="false" />
+            <element signature="e#12026#12121#0" expanded="false" />
+            <element signature="e#12292#13450#0" expanded="false" />
+            <element signature="e#12605#12741#0" expanded="false" />
+            <element signature="e#12774#12807#0" expanded="false" />
+            <element signature="e#12855#13323#0" expanded="false" />
+            <element signature="e#13183#13193#0" expanded="false" />
+            <element signature="e#13358#13443#0" expanded="false" />
+            <element signature="e#15616#15670#0" expanded="false" />
+            <element signature="e#16938#17337#0" expanded="false" />
+            <element signature="e#19450#19462#0" expanded="false" />
+            <element signature="e#19810#19818#0" expanded="false" />
+            <element signature="e#20961#22042#0" expanded="false" />
+            <marker date="1508690659955" expanded="false" signature="6520:6528" ph="..." />
+            <marker date="1508690659955" expanded="true" signature="6960:7074" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/modules/layer/default/layer.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1887">
+          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lay/modules/element.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="5" column="32" lean-forward="true" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
+          <folding>
+            <marker date="1508515697041" expanded="true" signature="3017:3025" ph="..." />
+            <marker date="1508515697041" expanded="true" signature="3371:3379" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/layui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8843">
+          <caret line="242" column="26" lean-forward="true" selection-start-line="242" selection-start-column="26" selection-end-line="242" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/digui.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="12" column="20" lean-forward="true" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/layer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2479">
+          <caret line="67" column="23" lean-forward="true" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/element.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/layui.js" />
     <entry file="file://$PROJECT_DIR$/src/lay/modules/element.js" />
     <entry file="file://$PROJECT_DIR$/src/lay/modules/jquery.js" />
@@ -514,7 +618,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
           <caret line="1529" column="0" lean-forward="false" selection-start-line="1529" selection-start-column="0" selection-end-line="1529" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -552,7 +655,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/layui.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
+        <state relative-caret-position="8843">
           <caret line="242" column="26" lean-forward="true" selection-start-line="242" selection-start-column="26" selection-end-line="242" selection-end-column="26" />
           <folding />
         </state>
@@ -568,8 +671,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/css/modules/layer/default/layer.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+        <state relative-caret-position="1887">
+          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -585,18 +688,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/example/layer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="67" column="23" lean-forward="true" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lay/modules/layer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
-          <caret line="361" column="8" lean-forward="true" selection-start-line="361" selection-start-column="8" selection-end-line="361" selection-end-column="8" />
+          <caret line="361" column="9" lean-forward="true" selection-start-line="361" selection-start-column="9" selection-end-line="361" selection-end-column="9" />
           <folding>
             <element signature="e#193#396#0" expanded="false" />
             <element signature="e#591#1548#0" expanded="false" />
@@ -606,6 +701,8 @@
             <element signature="e#1578#1806#0" expanded="false" />
             <element signature="e#1917#2197#0" expanded="false" />
             <element signature="e#2350#2613#0" expanded="false" />
+            <element signature="e#2669#3059#0" expanded="false" />
+            <element signature="e#3104#4244#0" expanded="false" />
             <element signature="e#6563#6577#0" expanded="false" />
             <element signature="e#7766#8205#0" expanded="false" />
             <element signature="e#8261#8756#0" expanded="false" />
@@ -632,11 +729,17 @@
             <element signature="e#19450#19462#0" expanded="false" />
             <element signature="e#19810#19818#0" expanded="false" />
             <element signature="e#20961#22042#0" expanded="false" />
-            <marker date="1508690659955" expanded="false" signature="2669:3059" ph="{...}" />
-            <marker date="1508690659955" expanded="false" signature="3104:4244" ph="{...}" />
             <marker date="1508690659955" expanded="false" signature="6520:6528" ph="..." />
             <marker date="1508690659955" expanded="true" signature="6960:7074" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/layer.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="80" column="9" lean-forward="true" selection-start-line="80" selection-start-column="9" selection-end-line="80" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
