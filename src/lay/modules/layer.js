@@ -217,13 +217,12 @@
                 break;
             case 4 : //tips层
                 conType || (config.content = [config.content,'body']);
-                config.follow = config.follow[1];//触发按钮对象
-                config.content = config.follow[0] + '<i class="layui-layer-TipsG"></i>';//内容文字+tip箭头
+                config.follow = config.content[1];//触发按钮对象
+                config.content = config.content[0] + '<i class="layui-layer-TipsG"></i>';//内容文字+tip箭头
                 delete config.titile;
                 config.tips = typeof config.tips === 'object' ? config.tips : [config.tips,true];
                 config.tipMore || layer.closeAll('tips');//是否允许添加多个tip
         }
-
         /*
          * @name
          * @param html 内容模板
@@ -321,7 +320,7 @@
         }
 
         //存储坐标信息对象
-        var gola = {
+        var goal = {
             width : follow.outerWidth(),
             height : follow.outerHeight(),
             top : follow.offset().top,
@@ -334,31 +333,31 @@
 
         goal.autoLeft = function(){
             //临界值判断
-            if(gola.left() + layArea[0] - win.width() > 0){
-                gola.tipLeft = gola.left + win.width - layArea[0];
+            if(goal.left + layArea[0] - win.width() > 0){
+                goal.tipLeft = goal.left + win.width - layArea[0];
             }else{
-                gola.tipLeft = gola.left;
+                goal.tipLeft = goal.left;
             }
         }
         //方向数组函数
-        gola.where = [
+        goal.where = [
             function(){//上
                 goal.autoLeft();
-                gola.tipTop = gola.top - layArea[1] - 10,//top值
+                goal.tipTop = goal.top - layArea[1] - 10,//top值
                 //设置箭头样式
-                tipsG.removeClass('layui-layer-TipsB').addClass('layui-layer-TipT').css('border-right-color',config.tips[1]);
+                tipsG.removeClass('layui-layer-TipsB').addClass('layui-layer-TipsT').css('border-right-color',config.tips[1]);
 
             }
         ]
 
         //初始化坐标定位
-        gola.where[guide - 1]();
+        goal.where[guide - 1]();
 
 
         /* 8*2为小三角形占据的空间 */
 
         if(guide === 1){
-            gola.top - (win.scrollTop() + layArea[1] + 8 * 2) < 0 && gola.where[2]();//右边显示(向上显示不下了)
+            goal.top - (win.scrollTop() + layArea[1] + 8 * 2) < 0 && goal.where[2]();//右边显示(向上显示不下了)
         }
         //是否设置关闭按钮
         layero.find('.' + doms[5]).css({
@@ -367,8 +366,8 @@
         })
         //设置坐标
         layero.css({
-            left : gola.tipLeft - (config.fixed ? win.scrollLeft() : 0),
-            top : gola.tipTop - (config.fixed ? win.scrollTop() : 0)
+            left : goal.tipLeft - (config.fixed ? win.scrollLeft() : 0),
+            top : goal.tipTop - (config.fixed ? win.scrollTop() : 0)
         })
     }
     //拖拽(牛皮)
@@ -521,6 +520,8 @@
             },200)
         }
     }
+    //关闭所有层
+    layer.closeAll = function(){};
     //设置指定层的样式
     layer.style = function(index,options,limit){
         var layero = $("#" + doms[0] + index),
