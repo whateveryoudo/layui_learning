@@ -118,7 +118,7 @@
                 content : [content,follow],
                 closeBtn : false,
                 shade : false,
-                time : 3000,
+                time : 0,
                 resize : false,
                 fixed : false,
                 maxWidth : 200
@@ -215,6 +215,10 @@
             case 0:
                 config.btn = ('btn' in config) ? config.btn : ready.btn[0];
                 break;
+            case  2://iframe
+                var content = config.content = conType ? config.content : [config.content || 'http://layer.layui.com','auto'];
+                config.content = '<iframe scrolling="'+(config.content[1] || 'auto')+'" allowtransparency="true" id="'+doms[4]+''+times+'" name="'+doms[4]+''+times+'" onload="this.className=\'\';" class="layui-layer-border" frameborder="0" src="'+config.content[0]+'"></iframe>';//构建iframe标签
+                break;
             case 4 : //tips层
                 conType || (config.content = [config.content,'body']);
                 config.follow = config.content[1];//触发按钮对象
@@ -244,7 +248,7 @@
                 }() :  body.append(html[1]);//直接添加弹层内容
             $('.layui-layer-move')[0] || body.append(ready.moveElem = moveElem);//添加触发移动元素
             that.layero = $('#' + doms[0] + times);//当前弹层元素(追加到实例对象中)
-        })
+        }).auto(times);
         //处理遮罩样式
         $("#layui-layer-shade" + that.index).css({
             'background-color' : config.shade[1] || '#000',
@@ -278,6 +282,40 @@
         if(config.isOutAnim){
             that.layero.data('isOutAnim',true);
         }
+    }
+    Class.pt.auto = function(index){//自适应
+        debugger;
+        var that = this,layero = $('#' + doms[0] + index),config = that.config;
+        //ie下bug
+
+        var area = [layero.innerWidth(),layero.innerHeight()],
+            titleHeight = layero.find(doms[1]).outerHeight() || 0,
+            btnHeight = layero.find('.' + doms[6]).outerHeight() || 0,
+            setHeight = function(elem){
+                elem = layero.find(elem);
+                elem.height(area[1] - titleHeight - btnHeight - 2 * (parseFloat(elem.css('padding-top')) | 0));//设置iframe高度
+            }
+
+            switch (config.type){
+                case 2 :
+                    setHeight('iframe');
+                    break;
+                default:
+                    if(config.area[1] === ''){
+                        if(config.maxHeight > 0 && layero.outerHeight() > config.outerHeight()){
+                            area[1] = config.maxHeight;
+                            setHeight('.' + doms[5]);
+                        }else if(config.fixed && area[1] >= win.height()){
+                            area[1] = win.height();//不能超过屏幕高度
+                            setHeight('.' + doms[5]);
+                        }
+                    }else{
+                        setHeight('.' + doms[5]);
+                    }
+                    break;
+            }
+
+            return that;
     }
     //坐标计算(居中)
     Class.pt.offset = function(){
@@ -333,8 +371,9 @@
 
         goal.autoLeft = function(){
             //临界值判断
-            if(goal.left + layArea[0] - win.width() > 0){
-                goal.tipLeft = goal.left + win.width - layArea[0];
+            if(goal.left + layArea[0] - win.width() > 0){//什么情况下
+                goal.tipLeft = goal.left + goal.width - layArea[0];
+                tipsG.css({right: 12, left: 'auto'});
             }else{
                 goal.tipLeft = goal.left;
             }
@@ -346,7 +385,21 @@
                 goal.tipTop = goal.top - layArea[1] - 10,//top值
                 //设置箭头样式
                 tipsG.removeClass('layui-layer-TipsB').addClass('layui-layer-TipsT').css('border-right-color',config.tips[1]);
-
+            },
+            function(){//右
+                goal.tipLeft = goal.left + goal.width + 10;
+                goal.tipTop = goal.top;
+                tipsG.removeClass('layui-layer-TipsL').addClass('layui-layer-TipsR').css('border-bottom-color',config.tips[1]);
+            },
+            function(){//下
+                goal.autoLeft();
+                goal.tipTop = goal.top + layArea[1] + 10//top值
+                tipsG.removeClass('layui-layer-TipsT').addClass('layui-layer-TipsB').css('border-right-color',config.tips[1]);
+            },
+            function(){//左
+                goal.tipLeft = goal.left - layArea[0] - 10;
+                goal.tipTop = goal.top;
+                tipsG.removeClass('layui-layer-TipsB').addClass('layui-layer-TipsL').css('border-bottom-color',config.tips[1]);//后面css没看懂
             }
         ]
 
@@ -357,7 +410,13 @@
         /* 8*2为小三角形占据的空间 */
 
         if(guide === 1){
-            goal.top - (win.scrollTop() + layArea[1] + 8 * 2) < 0 && goal.where[2]();//右边显示(向上显示不下了)
+            goal.top - (win.scrollTop() + layArea[1] + 8 * 2) < 0 && goal.where[2]();//下边显示(向上显示不下了)
+        }else if(guide == 2){
+            win.width() - (goal.left + goal.width + layArea[0] + 8 * 2) > 0 || goal.where[3]();//向左显示（右边显示不下了）
+        }else if(guide == 3){
+            goal.top + layArea[1] + 8 * 2 - (win.height() + win.scrollTop()) > 0 && goal.where[0]();//向上显示（底部显示不下了）
+        }else if(guide == 4){
+            layArea[0] + 8 * 2 - goal.left > 0 && goal.where[1]();
         }
         //是否设置关闭按钮
         layero.find('.' + doms[5]).css({
