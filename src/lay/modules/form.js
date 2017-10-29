@@ -5,7 +5,7 @@ layui.define('layer',function(exports){
         hint = layui.hint(),
         device = layui.device(),
 
-        MOD_NAME = 'form',ELEM = '.layui-form'
+        MOD_NAME = 'form',ELEM = '.layui-form',
         Form = function(){
             this.config = {
 
@@ -19,7 +19,36 @@ layui.define('layer',function(exports){
             items = {
                 //下拉选项
                 select : function(){
+                    var TIPS = '请选择',CLASS = 'layui-form-select',TITLE = 'layui-select-title',
+                        NONE = 'layui-select-none',DISABLED = 'layui-disabled',initValue = '',thatInput,
+                        selects = elemForm.find('select');
 
+                    //初始化所有的select
+                    selects.each(function(index,select){
+                        var othis = $(this),
+                            hasRender = $('.' + CLASS),
+                            disabled = this.disabled,//是否禁用属性
+                            value = this.value,
+                            selected = $(select.options[select.selectedIndex]),//获取当前选中的option
+                            optionFirst = select.options[0];//第一个option
+                        var isSearch = typeof othis.attr('lay-search') === 'string',
+                            placeholder = optionFirst ? (optionFirst.value ? TIPS : (optionFirst.innerHTML || TIPS)) : TIPS;//默认取第一个option的innerHTML 否则取默认TIPS
+                        //构建替代元素
+                        var resElem = $(['<div class="'+(isSearch ? '' : 'layui-unselect')+ CLASS + (disabled ? ' layui-layer-disabeld' : '') +'">'
+                            ,'<div class="'+TITLE+'"><input type="text" placeholder="'+placeholder+'" value="'+(value ? selected.html() : '')+'" '+(isSearch ? '' : ' layui-unselect')+(disabled ? ' ' + DISABLED : '')+'">'
+                            ,'<i class="layui-edge"></i></div>'
+                            //模拟子项
+                            ,'<dl class="layui-anim layui-anim-upbit' + (othis.find('optgroup')[0] ? ' layui-select-group' : '') + '">' + function(options){
+                                var arr = [];
+                                layui.each(function(index,item){
+                                    if(index == 0 && !item.value){
+                                        arr.push('<dd></dd>')
+                                    }
+                                })
+                            }(othis.find('*')) +
+                            '</dl>'
+                        ].join(''))
+                    })
                 }
             };
         type ? items[type] ? items[type]() : hint.err('不支持的'+type+'表单渲染') : layui.each(items,function(index,item){
