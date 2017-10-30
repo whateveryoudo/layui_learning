@@ -26,7 +26,7 @@ layui.define('layer',function(exports){
                     //初始化所有的select
                     selects.each(function(index,select){
                         var othis = $(this),
-                            hasRender = $('.' + CLASS),
+                            hasRender = othis.next('.' + CLASS),
                             disabled = this.disabled,//是否禁用属性
                             value = this.value,
                             selected = $(select.options[select.selectedIndex]),//获取当前选中的option
@@ -40,14 +40,23 @@ layui.define('layer',function(exports){
                             //模拟子项
                             ,'<dl class="layui-anim layui-anim-upbit' + (othis.find('optgroup')[0] ? ' layui-select-group' : '') + '">' + function(options){
                                 var arr = [];
-                                layui.each(function(index,item){
+                                layui.each(options,function(index,item){
                                     if(index == 0 && !item.value){
-                                        arr.push('<dd></dd>')
+                                        arr.push('<dd lay-vaule="" class="layui-select-tips">'+(item.innerHTML || TIPS)+'</dd>');//第一项
+                                    }else if(item.tagName.toLowerCase() === 'optgroup'){//下拉组
+                                        arr.push('<dt>'+item.label+'</dt>');
+                                    }else{
+                                        arr.push('<dd lay-value="'+item.value+' class="'+(value == item.value ? THIS : '')+(item.disabled ? (' ' + DISABLED) : '') + '">'+item.value+'</dd>')
                                     }
                                 })
+                                arr.length == 0 && arr.push('<dd lay-value="" class="'+ DISABLED+ '">没有选项</dd>');
+                                return arr.join('');//返回字符串
                             }(othis.find('*')) +
                             '</dl>'
-                        ].join(''))
+                        ,'</div>'].join(''));
+                        hasRender[0] && hasRender.remove();//已经渲染 重新渲染
+                        othis.after(resElem);
+                        events.call(this,reElem,disabled,isSearch);
                     })
                 }
             };
