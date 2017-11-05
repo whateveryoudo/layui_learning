@@ -10979,6 +10979,7 @@
 
 //将jQuery对象局部暴露给layui
     layui.define(function(exports){
+        console.log('我是jq模块');
         layui.$ = jQuery;
         //exports为向layui添加当前对象的回调方法
         exports('jquery', jQuery);

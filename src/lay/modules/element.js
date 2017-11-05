@@ -1,6 +1,7 @@
 // debugger;
 layui.define(['jquery'],function(exports){
     'use strict'
+    console.log('我是elem模块');
     var $ = layui.$,
         hint = layui.hint,
         device = layui.device(),

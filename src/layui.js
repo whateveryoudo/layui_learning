@@ -17,7 +17,8 @@
         modules = {//内置模块路径
             element : 'modules/element',//常用元素模
             layer : 'modules/layer',//弹层模块
-            jquery : 'modules/jquery'//jq模块
+            jquery : 'modules/jquery',//jq模块
+            form: 'modules/form' //表单集
     },
     //获取layui.js所在的目录
         getPath = function(){
@@ -71,6 +72,7 @@
 
             //js加载完毕
         function onScriptLoad(e,url){
+            console.log('我是js加载开始加载');
             var readyRegExp = navigator.platform === 'PLaySTATION 3' ? /^complete$/ : /^(complete|loaded)$/;
             if(e.type === 'load' || (readyRegExp.test((e.currentTarget || e.srcElement).readyState))){//判断是否加载成功
                 config.modules[item] = url;
@@ -78,7 +80,7 @@
 
                 (function poll(){
                     if(++timeout > config.timeout * 1000 / 4){
-                        return error(item + 'is not a valid module');//js加载超时
+                        return error(item + ' is not a valid module');//js加载超时
                     };
                     config.status[item] ? onCallback() : setTimeout(poll,4);
                 })()
@@ -86,6 +88,7 @@
         }
         //回调(暂时不明白)
         function onCallback(){
+            console.log("我是回调函数");
             exports.push(layui[item]);
             apps.length > 1 ?
                 that.use(apps.slice(1),callback,exports) :
@@ -103,6 +106,7 @@
                         (that.modules[item] || item) + '.js';//js文件名
                 node.async = true;
                 node.chartset = 'utf-8';
+
                 node.src = url + function(){
                     var version = config.version === true ? //是否添加版本
                         (config.v || (new Date().getTime())) :
@@ -122,6 +126,15 @@
                     },false)
                 }
                 config.modules[item] = url;
+            } else { //缓存
+                (function poll() {
+                    if(++timeout > config.timeout * 1000 / 4){
+                        return error(item + ' is not a valid module');
+                    };
+                    (typeof config.modules[item] === 'string' && config.status[item])
+                        ? onCallback()
+                        : setTimeout(poll, 4);
+                }());
             }
         };
     //记录基础数据
