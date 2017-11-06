@@ -1,15 +1,43 @@
-layui.define('jquery',function(exports){
+layui.define('layer',function(exports){
     'use strict'
     console.log('我是form模块');
     var $ = layui.$,
-        // layer = layui.layer,
+        layer = layui.layer,
         hint = layui.hint(),
         device = layui.device(),
 
         MOD_NAME = 'form',ELEM = '.layui-form',HIDE = 'layui-hide',SHOW = 'layui-show',DISABLED = 'layui-disabled',
         Form = function(){
-            this.config = {
-
+            this.config = {//默认配置项
+                verify : {//内置规则
+                    required : [
+                        /[\S]+/,
+                        '必填项不能为空'
+                    ],
+                    phone : [
+                        /^1\d{10}$/,
+                        '请输入正确的手机号'
+                    ],
+                    email : [
+                        /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
+                        '邮箱格式不正确'
+                    ],
+                    url : [
+                        /(^#)|(^http(s*):\/\/[^\s]+\.[^\s]+)/
+                        ,'链接格式不正确'
+                    ],
+                    number : function(value){
+                        if(!value || isNaN(value)){return '只能填写数字'}
+                    },
+                    date: [
+                        /^(\d{4})[-\/](\d{1}|0\d{1}|1[0-2])([-\/](\d{1}|0\d{1}|[1-2][0-9]|3[0-1]))*$/
+                        ,'日期格式不正确'
+                    ],
+                    identity: [
+                        /(^\d{15}$)|(^\d{17}(x|X|\d)$)/
+                        ,'请输入正确的身份证号'
+                    ]
+                }
             }
         };
     //表单事件监听
@@ -225,7 +253,7 @@ layui.define('jquery',function(exports){
                                 check[0].checked = false,
                                     reElem.removeClass(RE_CLASS[1]).find('em').text(text[1])
                                 ) : (
-                                    check[0].checkde = true,
+                                    check[0].checked = true,
                                         reElem.addClass(RE_CLASS[1]).find('em').text(text[0])
                                 )
 
@@ -264,7 +292,56 @@ layui.define('jquery',function(exports){
                         othis.after(reElem);
                         //初始化事件
                         events.call(this,reElem,RE_CLASS);
+                    })
+                },
+                //单选开关
+                radio : function(){
+                    var CLASS = 'layui-form-radio',ICONS = ['&#xe643;', '&#xe63f;'],
+                        radios = elemForm.find('input[type=radio]'),
+                    events = function(reElem,){
+                        var radio = $(this),ANIM = 'layui-anim-scaleSpring';//缩放动画
 
+                        reElem.on('click',function(){
+                            var name = radio[0].name,forms = radio.parents(ELEM);
+                            var filter = radio.attr('lay-filter');
+                            //这个正则没看懂
+                            var sameRadio = forms.find('input[name='+name.replace(/(\.|#|\[|\])/g,'\\$1')+']');//找到相同name的兄弟元素
+
+                            if(radio[0].disabled){return};
+
+                            layui.each(sameRadio,function(){
+                                var next = $(this).next('.' + CLASS);
+                                this.checked = false;
+                                next.removeClass(CLASS + 'ed');
+                                next.find('.layui-icon').removeClass(ANIM).html(ICONS[1]);//圆圈动画(取消选中其他相同name的radio)
+                            })
+
+                            radio[0].checked = true;
+                            reElem.addClass(CLASS + 'ed');
+                            reElem.find('.layui-icon').addClass(ANIM).html(ICONS[0]);//添加动画（ 选中当前radio替代元素）
+
+                            //执行回调
+                            layui.event.call(radio[0],MOD_NAME,'radio(' +filter+')',{
+                                elem : radio[0],
+                                value : radio[0].value,
+                                othis : reElem
+                            })
+                        })
+                    }
+                    radios.each(function(index,radio){
+                        var othis = $(this),hasRender = othis.next('.' + CLASS),disabled = this.disabled;
+
+                        if(typeof othis.attr('lay-ingore') === 'string'){return othis.show()};
+
+                        var reElem = $(['<div class="layui-unselect '+CLASS +(radio.checked ? (' '+ CLASS + 'ed') : '')+(disabled ?' layui-radio-disabled ' + DISABLED : '')+'">'
+                        ,'<i class="layui-anim layui-icon">'+ICONS[radio.checked ? 0 : 1]+'</i>',
+                         '<span>'+(radio.title || '未命名')+'</span>','</div>'].join(''));
+
+                        hasRender[0] && hasRender.remove();
+
+                        othis.after(reElem);
+
+                        events.call(this,reElem);
                     })
                 }
             };
@@ -273,7 +350,62 @@ layui.define('jquery',function(exports){
             })
         return that;
     }
+    //提交验证
+    var submit = function(){
+        debugger;
+        var button = $(this),verify = form.config.verify,stop = null,
+            DANGER = 'layui-form-danger',filed = {},elem = button.parents(ELEM),
+
+            verifyElem = elem.find('*[lay-verify]'),//获取需要校验的元素集
+            formElem = button.parents('form')[0],//当前所在的form元素
+            filedElem = elem.find('input,select,textarea'),//所有表单域
+            filter = button.attr('lay-filter')//获取过滤器
+
+        //开始校验
+        layui.each(verifyElem,function(_,item){
+            debugger;
+            var othis = $(this),ver = othis.attr('lay-verify').split('|');//获取到校验规则字符串
+            var tips = '',value = othis.val();
+            othis.removeClass(DANGER);
+            layui.each(ver,function(_,thisVer){
+
+                var isFn = typeof verify[thisVer] === 'function';
+                //优先判断函数验证,然后正则验证(验证规则存在,未通过时)
+                if(verify[thisVer] && (isFn ? tips = verify[thisVer](value,item) : !verify[thisVer][0].test(value))){
+                    layer.msg(tips || verify[thisVer][1],{//错误信息提示
+                        icon : 5,
+                        shift : 6
+                    });
+                    //PC自动定位焦点
+                    if(!device.android && !device.ios){
+                        item.focus();
+                    }
+
+                    othis.addClass(DANGER);
+
+                    return stop = true;
+                }
+            })
+            if(stop){return stop}
+        })
+
+        if(stop){return false}
+        //验证通过(收集选中的表单字段)
+        layui.each(filedElem,function(_,item){
+            if(!item,name){return};
+            if(/^checkbox|radio$/.test(item.type) && !item.checked){return};//check项未选中跳过
+            filed[item.name] = item.value;
+        })
+
+        return layui.event.call(this,MOD_NAME,'submit('+filter+')',{
+            elem : this,
+            form : formElem,
+            filed : filed
+        })
+    }
     var form = new Form(),dom = $(document),win = $(window);
     form.render();//自动执行渲染，控件
+    //表单提交事件(默认submit会执行验证菜户去回调函数中)
+    dom.on('submit',ELEM,submit).on('click','*[lay-submit]',submit);
     exports(MOD_NAME,form);
 })

@@ -13,6 +13,11 @@
 </style>
 <body>
 <button onclick="aaa()">添加个东西</button>
+
+<form action="">
+    <input type="text" required>
+    <button type="submit" >提交</button>
+</form>
 </body>
 <script src="../src/layui.js"></script>
 <script>
@@ -30,5 +35,6 @@
         ccc : 3
     }
     console.log(tempObj);
+    document.addEventListener('submit',function(){alert(222)});
 </script>
 </html>
