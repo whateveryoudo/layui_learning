@@ -177,47 +177,47 @@ body{padding: 10px;}
 <!-- <script src="../build/lay/dest/layui.all.js"></script> -->
 
 <script>
-
 layui.use('form', function(){
   var form = layui.form;
+  console.log(333);
   
   //自定义验证规则
-  form.verify({
-    title: function(value){
-      if(value.length < 5){
-        return '标题也太短了吧';
-      }
-    }
-    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-  });
+//  form.verify({
+//    title: function(value){
+//      if(value.length < 5){
+//        return '标题也太短了吧';
+//      }
+//    }
+//    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+//  });
 
   
   //事件监听
   form.on('select', function(data){
     console.log(this);
   })
+
+//  form.on('select(aihao)', function(data){
+//    console.log(data);
+//  });
   
-  form.on('select(aihao)', function(data){
-    console.log(data);
-  });
-  
-  form.on('checkbox', function(data){
-    console.log(this.checked, data.elem.checked);
-  });
-  
-  form.on('switch', function(data){
-    console.log(data);
-  });
-  
-  form.on('radio', function(data){
-    console.log(data);
-  });
+//  form.on('checkbox', function(data){
+//    console.log(this.checked, data.elem.checked);
+//  });
+//
+//  form.on('switch', function(data){
+//    console.log(data);
+//  });
+//
+//  form.on('radio', function(data){
+//    console.log(data);
+//  });
   
   //监听提交
-  form.on('submit(*)', function(data){
-    console.log(data)
-    return false;
-  });
+//  form.on('submit(*)', function(data){
+//    console.log(data)
+//    return false;
+//  });
   
 });
 
@@ -240,15 +240,15 @@ layui.use('form', function(){
 <script>
 layui.use('jquery', function(){
   var $ = layui.jquery;
-  var submit = function(){
-    return false;
-  };
-  $('#test').on('submit', function(){
-     return false
-  });
-  $('#test').on('submit', function(){
-     return true
-  });
+//  var submit = function(){
+//    return false;
+//  };
+//  $('#test').on('submit', function(){
+//     return false
+//  });
+//  $('#test').on('submit', function(){
+//     return true
+//  });
 });
 </script>
 </body>
