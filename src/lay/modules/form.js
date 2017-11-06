@@ -6,7 +6,7 @@ layui.define('jquery',function(exports){
         hint = layui.hint(),
         device = layui.device(),
 
-        MOD_NAME = 'form',ELEM = '.layui-form',HIDE = 'layui-hide',SHOW = 'layui-show',
+        MOD_NAME = 'form',ELEM = '.layui-form',HIDE = 'layui-hide',SHOW = 'layui-show',DISABLED = 'layui-disabled',
         Form = function(){
             this.config = {
 
@@ -203,6 +203,68 @@ layui.define('jquery',function(exports){
                         hasRender[0] && hasRender.remove();//已经渲染 重新渲染
                         othis.after(reElem);
                         events.call(this,reElem,disabled,isSearch);//初始化事件
+                    })
+                },
+                //复选框与开关
+                checkbox : function(){
+                    var CLASS = {
+                        checkbox : ['layui-form-checkbox','layui-form-checked','checkbox'],
+                        _switch : ['layui-form-switch','layui-form-onswitch','switch']//开关样式
+                    },checks = elemForm.find('input[type=checkbox]'),
+                    events = function(reElem,RE_CLASS){
+                        var check = $(this);
+                        //勾选事件
+                        reElem.on('click',function(){
+                            //获取过滤器
+                            var filter = check.attr('lay-filter'),
+                                text = (check.attr('lay-text') || '').split('|');
+
+                            if(check[0].disabled){return}
+                            //选中,改为不选中(text文字切换)
+                            check[0].checked ? (
+                                check[0].checked = false,
+                                    reElem.removeClass(RE_CLASS[1]).find('em').text(text[1])
+                                ) : (
+                                    check[0].checkde = true,
+                                        reElem.addClass(RE_CLASS[1]).find('em').text(text[0])
+                                )
+
+                            //绑定事件回调
+                            layui.event.call(check[0],MOD_NAME,RE_CLASS[2] + '(' + filter + ')',{
+                                elem : check[0],
+                                value : check[0].value,
+                                othis : reElem
+                            })
+                        })
+                    }
+                    //遍历所有的checkbox
+                    checks.each(function(index,check){
+                        var othis = $(this),skin = othis.attr('lay-skin'),
+                            text = (othis.attr('lay-text') || '').split('|'),disabled = this.disabled;
+                        if(skin === 'switch'){skin = '_' + skin};
+
+                        //获取对应的class数组集
+                        var RE_CLASS = CLASS[skin] || CLASS.checkbox;
+
+                        //是否进行美化
+                        if(typeof othis.attr('lay-ignore') === 'string'){return othis.show()};
+
+                        //创建替代元素
+                        var hasRender = othis.next('.' + RE_CLASS[0]);//判断元素是否已经存在
+                        var reElem = $(['<div class="layui-unselect '+RE_CLASS[0]+(
+
+                        check.checked ? (' ' + RE_CLASS[1]) : '') + (disabled ? ' layui-checkbox-disabled ' + DISABLED: '') +'" lay-skin="'+(skin || '')+'">'//是否添加lay-skin="primary"原始样式
+                        ,{//判断是switch还是普通checkbox
+                            _switch : '<em>' +((check.checked ? text[0] : text[1] || ''))+ '</em><i></i>'
+                            }[skin] || ((check.title.replace(/\s/g,'') ? ('<span>'+check.title+'</span>') : '') + '<i class="layui-icon">'+(skin ? '&#xe605;' : '&#xe618;')+'</i>')
+                            ,'</div>'].join(''));
+
+                        hasRender[0] && hasRender.remove();
+
+                        othis.after(reElem);
+                        //初始化事件
+                        events.call(this,reElem,RE_CLASS);
+
                     })
                 }
             };
