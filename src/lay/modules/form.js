@@ -44,6 +44,18 @@ layui.define('layer',function(exports){
     Form.prototype.on = function(events,callback){
         return layui.onevent.call(this,MOD_NAME,events,callback);
     }
+    //全局设置
+    Form.prototype.set = function(options){
+        var that = this;
+        $.extend(true,that.config,options);
+        return that;
+    }
+    //验证规则设定
+    Form.prototype.verify = function (setting) {
+        var that = this;
+        $.extend(true,that.config.verify,setting);
+        return that;
+    }
     Form.prototype.render = function(type,filter){
         var that = this,
             elemForm = $(ELEM + function(){
@@ -352,7 +364,6 @@ layui.define('layer',function(exports){
     }
     //提交验证
     var submit = function(){
-        debugger;
         var button = $(this),verify = form.config.verify,stop = null,
             DANGER = 'layui-form-danger',filed = {},elem = button.parents(ELEM),
 
@@ -363,7 +374,6 @@ layui.define('layer',function(exports){
 
         //开始校验
         layui.each(verifyElem,function(_,item){
-            debugger;
             var othis = $(this),ver = othis.attr('lay-verify').split('|');//获取到校验规则字符串
             var tips = '',value = othis.val();
             othis.removeClass(DANGER);
@@ -393,7 +403,7 @@ layui.define('layer',function(exports){
         //验证通过(收集选中的表单字段)
         layui.each(filedElem,function(_,item){
             if(!item,name){return};
-            if(/^checkbox|radio$/.test(item.type) && !item.checked){return};//check项未选中跳过
+            if(/^checkbox|radio$/.test(item.type) && !item.checked){return};//checkbox,radio项未选中跳过
             filed[item.name] = item.value;
         })
 

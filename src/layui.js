@@ -18,7 +18,8 @@
             element : 'modules/element',//常用元素模
             layer : 'modules/layer',//弹层模块
             jquery : 'modules/jquery',//jq模块
-            form: 'modules/form' //表单集
+            form: 'modules/form', //表单集
+            laydate : 'modules/laydate'//日期模块
     },
     //获取layui.js所在的目录
         getPath = function(){
