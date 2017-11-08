@@ -77,6 +77,20 @@
         };
     //lay对象操作
     LAY.prototype = [];
+    //将原型只会LAY
+    LAY.prototype.constructor = LAY;
+    //添加/获取属性
+    LAY.prototype.attr = function(key,value){
+
+        var that = this;
+        return value == undefined ? function(){
+            if(that.length > 0) {
+                return that[0].getAttribute(key);//获取属性值
+            }
+            }() : that.each(function(index,item){
+                item.setAttribute(key,value);
+            })
+    }
     //普通对象的深度扩展
     lay.extend = function(){
         var ai = 1,args = arguments,
@@ -101,6 +115,25 @@
 
         return args[0];//返回整合后的对象
     }
+    //对象遍历
+    lay.each = function(obj,fn){
+        var key,that = this;
+        if(typeof fn !== 'function'){return that;}
+        if(obj.constructor === Object){//关联数组遍历
+            for(key in obj){
+                if(fn.call(obj[key],key,obj[key])){
+                    break;
+                }
+            }
+        }else{//索引数组遍历
+            for(key = 0;key < obj.length;key ++){
+                if(fn.call(obj[key],key,obj[key])){break;}
+            }
+        }
+
+        return that;
+    }
+
     //构造器
     Class = function(options){
         var that = this;
@@ -113,10 +146,79 @@
     };
     //默认配置项
     Class.prototype.config = {
-
+        type : 'date',//控件的类型 year/month/date/time/datetime
+        position : null,
+        range : false,//是否开启日期范围选择
+        format : 'yyyy-MM-dd',//默认为日期格式
+        trigger : 'focus',//触发方式
     };
+    //判断元素是否是input|textarea
+    Class.prototype.isInput = function(elem){
+        return /input|textarea/.test(elem.tagName.toLocaleLowerCase());
+    }
     //初始准备
     Class.prototype.init = function(){
+        var that = this,
+            options = that.config,
+            dateType = 'yyyy|y|MM|M|dd|d|HH|H|mm|m|ss|s',
+            isStatic = options.position === 'static',
+            format = {
+                year : 'yyyy',
+                month : 'yyyy-MM',
+                date : 'yyyy-MM-dd',
+                time : 'HH:mm:ss',
+                datetime : 'yyyy-MM-dd HH:mm:ss'
+            };
+        options.elem = lay(options.elem);//触发元素
+
+        if(!options.elem[0]){return}
+
+        if(options.range === true){options.range = '-'};//时间范围选择符
+        //初始化默认format(format为date时会去根据type重新取对应的format)
+        if(options.format === format.date){
+            options.format = format[options.type];
+        }
+        //将日期格式转化为数组(例如yyyy-MM-dd 则为[yyyy,-,MM,-,dd])
+        that.format = options.format.match(new RegExp(dateType + '|.','g')) || [];
+
+        //生成正则表达式
+        that.EXP_IF = '';
+        that.EXP_SPLIT = '';
+        lay.each(that.format,function(i,item){//不是太清楚(拼接正则字符串)
+            var EXP = new RegExp(dateType).test(item)
+            ? '\\d{' + function(){
+                if(new RegExp(dateType).test(that.format[i == 0 ? i + 1 : i - 1] || '')){
+                    if(/^yyyy|y$/.test(item)){
+                        return 4;
+                    }
+                    return item.length;
+                }
+                if(/^yyyy$/.test(item)){return '1,4'};//长度4位
+                    if(/^y$/.test(item)){return '1,308'};
+                    return '1,2';
+                }() + '}': '\\' + item;
+                that.EXP_IF = that.EXP_IF + EXP;
+                that.EXP_SPLIT  = that.EXP_SPLIT + '(' + EXP + ')';
+        })
+        that.EXP_IF = new RegExp('^' + (
+            options.range ? that.EXP_IF + '\\s\\' + options.range + '\\s' + that.EXP_IF//含有日期范围
+                : that.EXP_IF
+            ) + '$');
+        that.EXP_SPLIT = new RegExp('^' + that.EXP_SPLIT + '$');
+
+        //判断触发元素是否是input|textarea，不是则采用click事件
+        if(!that.isInput(options.elem[0])){
+            if(options.trigger == 'focus'){
+                options.trigger = 'click';
+            }
+        }
+
+        //设置唯一的key
+        if(!options.elem.attr('lay-key')){
+            options.elem.attr('lay-key',that.index);
+        }
+
+        //纪录重要日期（开启日历需要）
 
     }
     //入口
