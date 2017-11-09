@@ -3,7 +3,7 @@
  */
 ;!function(){
     'use strict'
-    var isLayui = window.layui && layui.define,MOD_NAME = 'laydate',
+    var isLayui = window.layui && layui.define,
         ready = {
         //获取指定节点的属性值
             getStyle : function(node,name){
@@ -66,15 +66,27 @@
         lay = function(selector){
             return new LAY(selector);
         },
+        //字符串常量
+        MOD_NAME = 'laydate',ELEM_STATIC = 'layui-laydate-static',
+    //构造器
+    Class = function(options){
+        var that = this;
+        that.index = ++laydate.index;
+        this.config = lay.extend({},that.config,options);//整合参数
+
+        laydate.ready(function(){
+            that.init();
+        })
+    },
     //DOM构造器
-        LAY = function(selector){
-            var index = 0,
-                nativeDOM = typeof selector === 'object' ? [selector] :
-            document.querySelectorAll(selector || null);//获取nodeList类对象数组
-            for(;index < nativeDOM.length;index++){
-                this.push(nativeDOM[index])
-            }
-        };
+    LAY = function(selector){
+        var index = 0,
+            nativeDOM = typeof selector === 'object' ? [selector] :
+                document.querySelectorAll(selector || null);//获取nodeList类对象数组
+        for(;index < nativeDOM.length;index++){
+            this.push(nativeDOM[index])
+        }
+    };
     //lay对象操作
     LAY.prototype = [];
     //将原型只会LAY
@@ -84,9 +96,9 @@
 
         var that = this;
         return value == undefined ? function(){
-            if(that.length > 0) {
-                return that[0].getAttribute(key);//获取属性值
-            }
+                if(that.length > 0) {
+                    return that[0].getAttribute(key);//获取属性值
+                }
             }() : that.each(function(index,item){
                 item.setAttribute(key,value);
             })
@@ -95,7 +107,7 @@
     lay.extend = function(){
         var ai = 1,args = arguments,
             clone = function (target,obj) {
-                target = target || (obj.constructor === Array) ? [] : {};
+                target = target || (obj.constructor === Array ? [] : {});
                 //值为对象,则递归深度合并
                 for(var i in obj){
                     target[i] = (obj[i] && (obj[i].constructor === Object)) ?
@@ -105,9 +117,9 @@
                 return target;
             };
 
-        args[0] = typeof args[0] === 'object' ? args : {};
+        args[0] = typeof args[0] === 'object' ? args[0] : {};
 
-        for(;ai < args.length;ai++){
+        for(;ai < args.length;ai++){//跳过[0]项,args[0]作为目标对象
             if(typeof args[ai] === 'object'){
                 clone(args[0],args[ai]);
             }
@@ -133,21 +145,28 @@
 
         return that;
     }
-
-    //构造器
-    Class = function(options){
-        var that = this;
-        that.index = ++laydate.index;
-        this.config = lay.extend({},that.config,options);//整合参数
-
-        laydate.ready(function(){
-            that.init();
+    //创建元素
+    lay.elem = function(elemName,attr){
+        var elem = document.createElement(elemName);
+        lay.each(attr || {},function(key,val){
+            elem.setAttribute(key,val);
         })
-    };
+
+        return elem;
+    }
+    /*******封装类似jq基本操作*******/
+    //DOM遍历
+    LAY.prototype.each = function(fn){
+        return lay.each.call(this,this,fn);
+    }
+    LAY.prototype.on = function(eventName,fn){
+
+    }
     //默认配置项
     Class.prototype.config = {
         type : 'date',//控件的类型 year/month/date/time/datetime
         position : null,
+        lang : 'cn',
         range : false,//是否开启日期范围选择
         format : 'yyyy-MM-dd',//默认为日期格式
         trigger : 'focus',//触发方式
@@ -155,6 +174,43 @@
         max : '2099-12-31',//最大日期
         show : false,//是否直接显示控件
     };
+    //多语言
+    Class.prototype.lang = function(){
+        var that = this,
+            options = that.config,
+            text = {
+                cn : {//中文文字对象
+                    weeks : ['日','一','二','三','四','五','六'],
+                    time : ['时','分','秒'],
+                    timeTips : '选择时间',
+                    startTime : '开始时间',
+                    endTime : '结束时间',
+                    dateTips : '返回日期',
+                    month : ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
+                    tools : {
+                        confirm : '确定',
+                        clear : '清空',
+                        now : '现在'
+                    }
+                },
+                en : {//英文对象
+                    weeks: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+                    ,time: ['Hours', 'Minutes', 'Seconds']
+                    ,timeTips: 'Select Time'
+                    ,startTime: 'Start Time'
+                    ,endTime: 'End Time'
+                    ,dateTips: 'Select Date'
+                    ,month: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    ,tools: {
+                        confirm: 'Confirm'
+                        ,clear: 'Clear'
+                        ,now: 'Now'
+                    }
+                }
+            }
+
+            return text[options.lang] || text['cn'];//默认显示中文
+    }
     //判断元素是否是input|textarea
     Class.prototype.isInput = function(elem){
         return /input|textarea/.test(elem.tagName.toLocaleLowerCase());
@@ -248,8 +304,7 @@
             }
         })
         that.elemID = 'layui-laydate' + options.elem.attr('lay-key');
-
-        if(options.show && isStatic){that.render();}
+        if(options.show || isStatic){that.render();}
 
         isStatic || that.events();
 
@@ -264,7 +319,31 @@
     }
     //主体渲染
     Class.prototype.render = function(){
+        var that = this,
+            options = that.config,
+            lang = that.lang(),
+            isStatic = options.positions === 'static',
 
+            //主面板
+            elem = that.elem = lay.elem('div',{
+                id : that.elemID,
+                'class' : [
+                    'layui-laydate',
+                    options.range ? 'layui-laydate-range' : '',
+                    isStatic ? (' ' + ELEM_STATIC) : '',
+                    options.theme && options.theme !== 'default' && !/^#/.test(options.theme) ? ('laydate-theme-' + options.theme) : ''
+                ].join('')}),
+
+            //主区域
+            elemMain = that.elemMain = [],
+            elemHeader = that.elemHeader = [],
+            elemCont = that.elemCont = [],
+            elemTable = that.elemTable = [];
+
+
+        //静态定位插入到指定容器内,否则插入到body中
+        isStatic ? options.elem.appendChild(elem) :
+            document.body.appendChild(elem);
     }
     //绑定元素处理事件
     Class.prototype.events = function(){
@@ -283,9 +362,9 @@
         var inst = new Class(options);
 
     }
-
+    //暴露lay函数（lay函数包含获取元素,一系列扩展方法）;
+    window.lay = window.lay || lay;
     //加载方式
-
     isLayui ? (
             laydate.ready(),layui.define(function(exports){
                 laydate.path = layui.cache.dir;
