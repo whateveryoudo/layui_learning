@@ -151,6 +151,9 @@
         range : false,//是否开启日期范围选择
         format : 'yyyy-MM-dd',//默认为日期格式
         trigger : 'focus',//触发方式
+        min : '1990-1-1',//最小日期
+        max : '2099-12-31',//最大日期
+        show : false,//是否直接显示控件
     };
     //判断元素是否是input|textarea
     Class.prototype.isInput = function(elem){
@@ -219,6 +222,60 @@
         }
 
         //纪录重要日期（开启日历需要）
+
+        //获取限制日期(正则的匹配规则)
+        //^ 匹配一个输入或一行的开头，/^a/匹配"an A"，而不匹配"An a"
+        //$ 匹配一个输入或一行的结尾，/a$/匹配"An a"，而不匹配"an A"
+        //* 匹配前面元字符0次或多次，/ba*/将匹配b,ba,baa,baaa
+        //+ 匹配前面元字符1次或多次，/ba+/将匹配ba,baa,baa
+        // ? 匹配前面元字符0次或1次，/ba?/将匹配b,ba
+        lay.each(['min','max'],function(i,item){
+            var ymd = [],hms = [];
+            if(typeof options[item] === 'number'){
+
+            }else{//字符串处理
+                ymd = (options[item].match(/\d+-\d+-\d+/) || [''])[0].split('-');//获取年月日按照-处理成数组
+                hms = (options[item].match(/\d+:\d+:\d+/) || [''])[0].split(':');//获取时分秒-处理成数组
+            }
+            //将其值存储到对象中(|其实单竖杠“|”就是转换为2进制之后相加得到的结果)
+            options[item] = {
+                year : ymd[0] | 0 || new Date().getFullYear(),
+                month : ymd[1] ? (ymd[1] | 0) - 1 : new Date().getMonth(),
+                date : ymd[2] | 0 || new Date().getDate(),
+                hours : hms[0] | 0 ,
+                minutes : hms[1] | 0 ,
+                seconds : hms[2] | 0
+            }
+        })
+        that.elemID = 'layui-laydate' + options.elem.attr('lay-key');
+
+        if(options.show && isStatic){that.render();}
+
+        isStatic || that.events();
+
+        //默认赋值
+        if(options.value){
+            if(options.value.constructor === Date){
+                that.setValue(that.parse(0,that.systemDate(options.value)));
+            }else{
+                that.setValue(options.value);
+            }
+        }
+    }
+    //主体渲染
+    Class.prototype.render = function(){
+
+    }
+    //绑定元素处理事件
+    Class.prototype.events = function(){
+
+    }
+    //系统消息
+    Class.prototype.systemDate = function(){
+
+    }
+    //赋值
+    Class.prototype.setValue = function(){
 
     }
     //入口
