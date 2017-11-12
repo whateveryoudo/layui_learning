@@ -67,7 +67,7 @@
             return new LAY(selector);
         },
         //字符串常量
-        MOD_NAME = 'laydate',ELEM_STATIC = 'layui-laydate-static',
+        MOD_NAME = 'laydate',ELEM_STATIC = 'layui-laydate-static',ELEM_FOOTER = '.laydate-btns-confirm',
     //构造器
     Class = function(options){
         var that = this;
@@ -173,6 +173,7 @@
         min : '1990-1-1',//最小日期
         max : '2099-12-31',//最大日期
         show : false,//是否直接显示控件
+        zIndex : null,//控件的层级
     };
     //多语言
     Class.prototype.lang = function(){
@@ -338,8 +339,106 @@
             elemMain = that.elemMain = [],
             elemHeader = that.elemHeader = [],
             elemCont = that.elemCont = [],
-            elemTable = that.elemTable = [];
+            elemTable = that.elemTable = [],
 
+            //底部区域
+            divFooter = that.footer = lay.elem('div',{ 'class' : ELEM_FOOTER});
+
+            if(options.zIndex) {elem.style.zIndex = options.zIndex};
+
+            //日历区域（单/双）
+            lay.each(new Array(2),function(i){
+                if(!options.range && i > 0){return true}//单日历控件,只初始化i=0
+                //头部区域
+                var divHeader = lay.elem('div',{
+                    'class' : 'layui-laydate-header'
+                }),
+                    //左右切换
+                   headerChild = [
+                       function(){//上一年
+                        var elem = lay.elem('i',{
+                            'class' : 'layui-icon laydate-icon laydate-prev-y'
+                        });
+                        elem.innerHTML = '&#xe65a;';//左箭头
+                        return elem;
+                       }(),
+                       function () {//上一月
+                           var elem = lay.elem('i',{
+                               'class' : 'layui-icon laydate-icon laydate-prev-m'
+                           })
+                           elem.innerHTML = '&#xe603;';
+                           return elem;
+                       }(),
+                       function () {//年月选择
+                           var elem = lay.elem('div',{
+                               'class' : 'laydate-set-ym'
+                           }),spanY = lay.elem('span'),spanM = lay.elem('span');
+                            elem.appendChild(spanY);
+                            elem.appendChild(spanM);
+                           return elem;
+                       }(),
+                       function(){
+                           var elem = lay.elem('i',{
+                               'class' : 'layui-icon laydate-icon laydate-next-m'
+                           })
+                           elem.innerHTML = '&#xe602;';
+                           return elem;
+                       }(),
+                       function(){//下一年
+                           var elem = lay.elem('i',{
+                               'class' : 'layui-icon laydate-icon laydate-next-y'
+                           });
+                           elem.innerHTML = '&#xe65b;';//左箭头
+                           return elem;
+                       }()
+                   ],
+                    //日历内容区域
+                    divContent = lay.elem('div',{
+                        'class' : 'layui-laydate-content'
+                    }),
+                    table = lay.elem('table'),
+                    thead = lay.elem('thead'),
+                    theadTr = lay.elem('tr');
+
+                    //生成年月选择
+                    lay.each(headerChild,function(i,item){
+                        divHeader.append(item);
+                    })
+
+                    //生成表格
+                    thead.appendChild(theadTr);
+                    //6x7表格
+                    lay.each(new Array(6),function(i){//表体
+                        //每次在最前面插入一行(insertRow() 方法用于在表格中的指定位置插入一个新行。)
+                        var tr = table.insertRow(0);
+                        lay.each(new Array(7),function(j){
+                            if(i == 0){//表头,thead
+                                var th = lay.elem('th');
+                                th.innerHTML = lang.weeks[j];//th为周1-周天
+                                theadTr.appendChild(th);
+                            }
+                            tr.insertCell(j);//方法用于在 HTML 表的一行的指定位置插入一个空的 <td> 元素。
+                        })
+                    })
+                    table.insertBefore(thead,table.children[0]);//将thead插入到tbody前面
+
+                    divContent.appendChild(table);
+
+                    elemMain[i] = lay.elem('div',{//构建日期list容器元素
+                        'class' : 'layui-laydate-main laydate-main-last-' + i
+                    })
+                    elemMain[i].appendChild(divHeader);
+                    elemMain[i].appendChild(divContent);
+
+                    elemHeader.push(headerChild);
+                    elemCont.push(divContent);
+                    elemTable.push(table);
+            })
+
+        //插入到主区域中
+        lay.each(elemMain,function(i,main){
+            elem.appendChild(main);
+        })
 
         //静态定位插入到指定容器内,否则插入到body中
         isStatic ? options.elem.appendChild(elem) :
