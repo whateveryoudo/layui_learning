@@ -341,6 +341,7 @@
             elemTable = that.elemTable = [];
 
 
+
         //静态定位插入到指定容器内,否则插入到body中
         isStatic ? options.elem.appendChild(elem) :
             document.body.appendChild(elem);
