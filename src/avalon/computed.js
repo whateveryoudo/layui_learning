@@ -1,20 +1,22 @@
 var vm = avalon.define({
     $id: "duplex1",
-    data: [{checked: false},  {checked: false},{checked: false},{checked: false},  {checked: false},{checked: false},{checked: false},  {checked: false},{checked: false}],
+    data: [{checked: false},  {checked: false},{checked: false}],
     allchecked: false,
-    selectedArr : [],
-    $computed : {
-        selectedArr : function () {
-            var tempArr = [];
+    // selectedArr : [],
+    // $computed : {
+    //
+    // },
+    //不用计算属性,改用方法操作
+    selectedArr : function () {
+        var tempArr = [];
 
-            this.data.forEach(function (item) {
+        this.data.forEach(function (item) {
 
-                if(item.checked){
-                    tempArr.push(1);
-                }
-            })
-            return tempArr;
-        }
+            if(item.checked){
+                tempArr.push(1);
+            }
+        })
+        return tempArr;
     },
     checkAll: function (e) {
         var checked = e.target.checked
