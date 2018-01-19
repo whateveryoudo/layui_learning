@@ -1,0 +1,24 @@
+<!--非组件实现-->
+
+<view class="container">
+
+
+
+    <!--个人资料-->
+    <CellGroup>
+        <Cell bind:onclick="handleOpt" isShowArrow="{{true}}" link-url="../personInfo/personInfo"  is-need-border-top="{{false}}" label-text="个人资料"></Cell>
+    </CellGroup>
+<!--有没有更加简单的方法 样式设置-->
+    <CellGroup>
+        <Cell is-need-border-top="{{false}}" isShowArrow="{{true}}" label-text="手机信息"></Cell>
+        <Cell label-text="清除缓存" isShowArrow="{{true}}"></Cell>
+
+    </CellGroup>
+
+    <CellGroup>
+        <Cell is-need-border-top="{{false}}" isShowArrow="{{true}}" bind:onclick="handleOpt" link-url="../location/location" label-text="跟新位置"></Cell>
+    </CellGroup>
+    <CellGroup>
+        <Cell is-need-border-top="{{false}}" isShowArrow="{{true}}" label-text="关于"></Cell>
+    </CellGroup>
+</view>

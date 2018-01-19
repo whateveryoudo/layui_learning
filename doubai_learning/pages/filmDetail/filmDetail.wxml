@@ -1,0 +1,73 @@
+<view class="film_detail_con">
+    <view class="fd_bg" style="background-image: url({{filmDetail.images.large}})"></view>
+    <image src="{{filmDetail.images.large}}" class="fd_cover"></image>
+    <!--影片内容介绍-->
+    <view class="fd_info">
+        <view class="fd_title">{{filmDetail.title}}</view>
+        <view class="fd_intro_txt">导演：{{filmDetail.directors[0].name}}</view>
+        <view class="fd_intro_txt">演员：
+            <block wx:for="{{filmDetail.casts}}" wx:for-item="FD_cast_item" wx:for-index="FD_cast_index" wx:key="FD_cast_item">
+                {{FD_cast_item.name}}
+                <block wx:if="{{FD_cast_index != filmDetail.casts.length - 1}}">/</block>
+            </block>
+        </view>
+
+        <view class="fd_intro_txt">豆瓣评分：
+            <block wx:if="{{filmDetail.rating.average == 0}}">暂无评分</block>
+            <block wx:else>{{filmDetail.rating.average}}分</block>
+        </view>
+
+        <view class="fd_intro_txt">上映年份：{{filmDetail.year}}</view>
+    </view>
+    <!--收藏-->
+    <view class="fd_favorite {{isFilmFavorite ? 'fd_favorite_active' : ''}}" bindtap="favoriteFilm">收藏</view>
+</view>
+<!--该影片观看人数分类-->
+<view class="fd_data_con">
+    <view class="fd_data_item">
+        <view class="fd_data_num">{{filmDetail.collect_count}}</view>
+        <view class="fd_data_title">看过</view>
+    </view>
+    <view class="fd_data_item">
+        <view class="fd_data_num">{{filmDetail.wish_count}}</view>
+        <view class="fd_data_title">想看</view>
+    </view>
+    <view class="fd_data_item">
+        <view class="fd_data_num">{{filmDetail.ratings_count}}</view>
+        <view class="fd_data_title">评分人数</view>
+    </view>
+</view>
+<!--影片内容详情-->
+<view class="fd_ct">
+    <!--*******剧情简介******-->
+    <view class="fd_ct_title">剧情简介</view>
+    <view class="fd_ct_info">
+        {{filmDetail.summary}}
+    </view>
+    <!--*******导演/演员******-->
+    <view class="fd_ct_title">导演/演员</view>
+    <view class="fd_ct_person">
+        <!--导演-->
+        <view class="fd_ct_person_item">
+            <image class="fd_ct_person_avator" src="{{filmDetail.directors[0].avatars.medium}}"></image>
+            <view class="fd_ct_person_name">{{filmDetail.directors[0].name}}</view>
+            <view class="fd_ct_person_role">导演</view>
+        </view>
+        <!--演员-->
+        <block wx:for="{{filmDetail.casts}}" wx:for-item="FD_cast_item" wx:key="FD_cast_item">
+            <view class="fd_ct_person_item">
+                <image class="fd_ct_person_avator" src="{{FD_cast_item.avatars.medium}}"></image>
+                <view class="fd_ct_person_name">{{FD_cast_item.name}}</view>
+                <view class="fd_ct_person_role">演员</view>
+            </view>
+        </block>
+    </view>
+
+    <!--*******标签集******-->
+    <view class="fd_ct_title">标签</view>
+    <view class="fd_ct_tags">
+        <block wx:for="{{filmDetail.genres}}" wx:for-item="FD_tag_item" wx:key="FD_tag_item">
+            <view class="FD_tag_item">{{FD_tag_item}}</view>
+        </block>
+    </view>
+</view>

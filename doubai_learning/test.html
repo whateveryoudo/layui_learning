@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>递归测试</title>
+</head>
+<body>
+
+</body>
+
+<script>
+    var res = {"msg":"操作成功!","code":"10000","data":{"authDesc":"","authorityGroupList":[{"authorityList":[{"authKey":"ItemManage_ItemList","authName":"商品列表","authid":50,"ishave":true,"pid":1},{"authKey":"ItemManage_DownItem","authName":"下架商品","authid":51,"ishave":true,"pid":1}],"groupid":1,"groupname":"商品管理"},{"authorityList":[{"authKey":"MerchantManage_CheckStationMerchant","authName":"收银台商户","authid":52,"ishave":true,"pid":2},{"authKey":"MerchantManage_whiteCodeManage","authName":"白码管理","authid":53,"ishave":true,"pid":2},{"authKey":"MerchantManage_SignMerchant","authName":"签约商户","authid":54,"ishave":true,"pid":2}],"groupid":2,"groupname":"商户管理"},{"authorityList":[{"authKey":"BillManage_UserBill","authName":"用户账单","authid":55,"ishave":true,"pid":3}],"groupid":3,"groupname":"账单管理"},{"authorityList":[{"authKey":"SummarizeManage_MerchantSumTable","authName":"商户结算表","authid":56,"ishave":true,"pid":4},{"authKey":"SummarizeManage_HistorySummary","authName":"历史结算","authid":57,"ishave":true,"pid":4},{"authKey":"SummarizeManage_MerchantSumTableJS","authName":"商户结算表(结算)","authid":70,"ishave":true,"pid":4},{"authKey":"SummarizeManage_MerchantSumTableCW","authName":"商户结算表(财务)","authid":71,"ishave":true,"pid":4}],"groupid":4,"groupname":"结算管理"},{"authorityList":[{"authKey":"LoanManage_HistoryLoan","authName":"历史放款","authid":58,"ishave":true,"pid":5},{"authKey":"LoanManage_ExceptionLoan","authName":"异常放款","authid":59,"ishave":true,"pid":5}],"groupid":5,"groupname":"放款管理"},{"authorityList":[{"authKey":"AuditModule_ApplyList","authName":"一审列表","authid":60,"ishave":true,"pid":7},{"authKey":"AuditModule_MachineCheckList","authName":"机审列表","authid":66,"ishave":false,"pid":7},{"authKey":"AuditModule_OrderUnAudit","authName":"信审主管","authid":67,"ishave":true,"pid":7},{"authKey":"AuditModule_TwoLevel","authName":"二审列表","authid":87,"ishave":false,"pid":7}],"groupid":7,"groupname":"信审模块"},{"authorityList":[{"authKey":"StoreManage_CheckStationMerchant","authName":"收银台商户","authid":61,"ishave":true,"pid":8},{"authKey":"StoreManage_SignMerchant","authName":"签约商户","authid":62,"ishave":true,"pid":8}],"groupid":8,"groupname":"商户管理"},{"authorityList":[{"authKey":"BillManage_UserManage","authName":"用户账单","authid":63,"ishave":true,"pid":9}],"groupid":9,"groupname":"账单管理"},{"authorityList":[{"authKey":"SummaryIntercept_TodaySummary","authName":"今日结算","authid":64,"ishave":true,"pid":10},{"authKey":"SummaryIntercept_ExceptionMerchant","authName":"异常商户","authid":65,"ishave":true,"pid":10}],"groupid":10,"groupname":"结算拦截"}],"userid":11}};
+    var data = res.data.authorityGroupList;
+    let isHave = false;
+    data.forEach(function(item,index){
+        checkIsHave(item);
+    })
+    function checkIsHave(data){
+
+    }
+</script>
+</html>

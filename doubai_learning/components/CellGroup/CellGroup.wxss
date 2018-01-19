@@ -1,0 +1,14 @@
+
+@import "../../style/weui.wxss";
+/*
+样式reset
+ */
+.weui-cells{
+    font-size: 28rpx;
+    margin-top: 20rpx;
+
+}
+.weui-cells:after,.weui-cells:before{
+    border:none;
+}
+

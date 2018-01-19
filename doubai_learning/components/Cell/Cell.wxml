@@ -1,0 +1,13 @@
+<!--自定义搜索为空组件-->
+
+<view class="weui-cell  {{isShowArrow && 'weui-cell_access'}} {{!isNeedBorderTop && 'noBorder'}}" data-url="{{linkUrl}}" bindtap="onTap">
+        <view class="weui-cell__hd">
+            <block wx:if="{{labelIcon}}">
+                <image src="{{labelIcon}}" style="width:40rpx;height:40rpx;margin-right:10rpx;display:block"></image>
+            </block>
+        </view>
+        <view class="weui-cell__bd">
+            <view>{{labelText}}</view>
+        </view>
+        <view class="weui-cell__ft">{{cellRightText}}</view>
+</view>

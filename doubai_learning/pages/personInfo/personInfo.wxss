@@ -1,0 +1,9 @@
+page {
+  background-color: #f4f4f4; }
+
+.handle_con {
+  margin: 20rpx;
+  text-align: center;
+  margin-top: 40rpx; }
+
+/*# sourceMappingURL=personInfo.wxss.map */

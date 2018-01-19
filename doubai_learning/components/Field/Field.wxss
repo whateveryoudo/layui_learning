@@ -1,0 +1,11 @@
+@import "../../style/weui.wxss";
+.weui-cell{
+    padding: 20rpx 30rpx;
+}
+.weui-cell__bd{
+    flex:1
+}
+.weui-cell__ft{
+    text-align: left;
+    flex: 3;
+}

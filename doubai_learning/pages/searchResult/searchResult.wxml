@@ -1,0 +1,9 @@
+<!--影片列表-->
+<import src="../../components/filmList/filmList.wxml"/>
+
+    <block mx:if="{{isNull}}">
+        <search-null nullObj="{{nullObj}}"></search-null>
+    </block>
+    <block mx:else>
+        <template is="filmList" data="{{films,hasMore}}"/>
+    </block>

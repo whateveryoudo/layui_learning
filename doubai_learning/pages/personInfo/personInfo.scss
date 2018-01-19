@@ -1,0 +1,10 @@
+//scss文件
+@import "../../style/mixin.scss";
+page{
+  background-color: $bc;
+}
+.handle_con{
+  margin: 20rpx;
+  text-align: center;
+  margin-top: 40rpx;
+}

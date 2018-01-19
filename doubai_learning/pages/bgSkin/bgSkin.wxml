@@ -1,0 +1,16 @@
+<view class="bg_wall_wrapper">
+    <!--这里不能采用scroll-view 详见 官方文档-->
+    <view class="b_w_item_con {{curSkin == skinItem.imgUrl && 'selected'}}" data-imgurl="{{skinItem.imgUrl}}" bindtap="chooseSkin" wx:for="{{curSkinData}}" wx:for-item="skinItem" wx:key="title">
+        <image src="{{skinItem.imgUrl}}"></image>
+        <view class="des_mask" >
+            <text>{{skinItem.title}}</text>
+        </view>
+    </view>
+    <!--加载更多 与 没有更多-->
+    <block wx:if="{{hasMore}}">
+        <view class="loading-tip">拼命加载中...</view>
+    </block>
+    <block wx:else>
+        <view class="loading-tip">没有更多内容了</view>
+    </block>
+</view>

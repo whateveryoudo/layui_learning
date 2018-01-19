@@ -1,0 +1,7 @@
+{
+  "usingComponents" : {
+    "searchNull" : "../../components/SearchNull/SearchNull"
+  },
+  "navigationBarTitleText": "搜索结果",
+  "enablePullDownRefresh": true
+}

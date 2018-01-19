@@ -1,0 +1,34 @@
+<view class="container">
+    <block>
+        <view class="user_info" style="background-image: url({{avatarSkin}})">
+            <view>
+                <image class="u_i_avatar" src="{{userInfo.avatarUrl}}"></image>
+            </view>
+            <!--昵称性别图标-->
+            <view class="u_i_word_con">
+                <text class="u_i_nickName">{{userInfo.nickName}}</text>
+                <!--男性-->
+                <view class="sex_icon u_i_gentleman" wx:if="{{userInfo.gender == 1}}"></view>
+                <view class="sex_icon u_i_madam" wx:elif="{{userInfo.gender == 2}}"></view>
+                <!--女性-->
+            </view>
+            <!--换肤图标-->
+            <navigator class="change_skin_icon" url="../bgSkin/bgSkin"></navigator>
+        </view>
+
+    </block>
+    <block>
+        <!--内容区-->
+        <view class="grid_wrapper">
+            <block wx:for="{{gridDataList}}"  wx:for-item="gridItem" wx:key="name">
+                <view class="g_w_item" data-url="{{gridItem.linkUrl}}" bindtap="toGridDetail">
+                    <view class="g_w_item_img">
+                        <image src="{{gridItem.imgUrl}}"></image>
+                    </view>
+                    <view class="g_w_item_des">{{gridItem.name}}</view>
+                </view>
+            </block>
+
+        </view>
+    </block>
+</view>

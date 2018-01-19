@@ -1,0 +1,33 @@
+<!--引入toast组件-->
+<import  src="../../components/Toast/Toast.wxml"/>
+<template is="toast" data="{{...$wux.toast}}"></template>
+
+<view class="search_con">
+    <view class="search_top">
+        <!--顶部搜索-->
+        <form bindsubmit="toSearch">
+            <view class="search_type" bindtap='changeSearchType'>
+                {{searchType == 'keyword' ? '默认' : '类型'}}
+            </view>
+            <input type="text" class="search_txt" name="keyword"
+                placeholder="{{searchType == 'keyword' ? '请输入电影标题、演员或导演' : '请输入影片类型，如：爱情、喜剧'}}"
+            />
+            <button class="search_btn" formType="submit">搜索</button>
+        </form>
+        <!--下方关键字搜索-->
+        <view class="search_keyword_con">
+            <view class="s_k_wrapper">
+                <view class="s_k_label">热门搜索</view>
+                <view class="s_k_item" data-type="keyword" data-keyword="{{hotKeywordItem}}" bindtap="searchByWay" wx:for="{{hotKeyword}}" wx:for-item="hotKeywordItem" wx:key="hotKeywordItem">
+                    {{hotKeywordItem}}
+                </view>
+            </view>
+            <view class="s_k_wrapper">
+                <view class="s_k_label">热门标签</view>
+                <view class="s_k_item" data-type="tag" bindtap="searchByWay" wx:for="{{hotTag}}" wx:for-item="hotTagItem" wx:key="hotTagItem">
+                    {{hotTagItem}}
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

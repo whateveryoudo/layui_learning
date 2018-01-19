@@ -1,0 +1,23 @@
+<view class="container">
+    <map id="myMap" class="map_con"
+         longitude="{{longitude}}"
+         latitude="{{latitude}}"
+        markers="{{markers}}"
+         polyline = "{{polyline}}"
+         controls = "{{controls}}"
+
+         show-location
+    ></map>
+    <!--当前信息显示-->
+    <view class="locationInfo">
+        你当前的位置在：{{locaDesc}}
+    </view>
+<!--测试-->
+    <!--<view class="opt_btns">-->
+        <!--<button type="primary" bindtap="getCenterLocation">获取位置</button>-->
+        <!--<button type="primary" bindtap="moveToLocation">移动位置</button>-->
+        <!--<button type="primary" bindtap="translateMarker">移动标注</button>-->
+        <!--<button type="primary" bindtap="includePoints">缩放视野展示所有经纬度</button>-->
+    <!--</view>-->
+    <button class="big-btn" type="primary" loading="{{isLoading}}" bindtap="updateLocation">重新定位</button>
+</view>

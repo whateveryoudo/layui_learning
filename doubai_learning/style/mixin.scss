@@ -1,0 +1,60 @@
+//scss文件
+$green : #47a86c;
+$bc : #f4f4f4;
+$fc : #fff;
+
+//定义代码块
+//背景图撑满
+@mixin bis($url){
+  background-image:url($url);
+  background-repeat:no-repeat;
+  background-size:100% 100%
+}
+//圆角
+@mixin borderRadius($radius){
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+//定位全屏
+@mixin  allOver{
+  position: absolute;
+  top:0;
+  left:0;
+}
+//定位上下左右居中
+@mixin ctp($width, $height) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -$height/2;
+  margin-left: -$width/2;
+}
+
+//定义上下居中
+@mixin ct{
+  position: absolute;
+  top:50%;
+  transform: translateY(-50%);
+}
+//定义宽高函数
+@mixin wh($width,$height){
+  width : $width;
+  height : $height
+}
+//定义大小颜色函数
+@mixin sc($size,$color){
+  font-size : $size;
+  color : $color;
+}
+//flex 布局与子元素的对齐方式
+@mixin fj($type : space-between){
+  display: flex;
+  justify-content: $type;
+}
+//字体大小 行高 字体
+@mixin font($size,$line-height,$family: 'Microsoft YaHei'){
+  font: #{$size}/#{$line-height} $family;
+}

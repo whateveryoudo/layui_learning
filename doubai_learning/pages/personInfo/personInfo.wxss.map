@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,IAAI;EACF,gBAAgB,ECDZ,OAAO;;ADGb,WAAW;EACT,MAAM,EAAE,KAAK;EACb,UAAU,EAAE,MAAM;EAClB,UAAU,EAAE,MAAM",
+"sources": ["personInfo.scss","../../style/mixin.scss"],
+"names": [],
+"file": "personInfo.wxss"
+}

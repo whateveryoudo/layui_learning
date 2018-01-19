@@ -1,0 +1,87 @@
+<!--引入toast组件-->
+<import  src="../../components/Toast/Toast.wxml"/>
+<template is="toast" data="{{...$wux.toast}}"></template>
+<!--自读部分-->
+<view class="readOnly_container" wx:if="{{isEnable}}">
+    <!--第一部分-->
+    <CellGroup>
+        <Cell  cell-right-text="{{personInfo.name || '未填写'}}"   is-need-border-top="{{false}}" label-text="姓名"></Cell>
+        <Cell  cell-right-text="{{personInfo.nickName || '未填写'}}" label-text="昵称"></Cell>
+        <Cell  cell-right-text="{{personInfo.gender || '未填写'}}" label-text="性别"></Cell>
+        <Cell  cell-right-text="{{personInfo.age || '未填写'}}" label-text="年龄"></Cell>
+        <Cell  cell-right-text="{{personInfo.birthday || '未填写'}}" label-text="生日"></Cell>
+        <Cell  cell-right-text="{{personInfo.constellation || '未填写'}}" label-text="星座"></Cell>
+    </CellGroup>
+    <!--有没有更加简单的方法 样式设置-->
+    <CellGroup>
+        <Cell cell-right-text="{{personInfo.company || '未填写'}}" is-need-border-top="{{false}}" label-text="公司"></Cell>
+        <Cell cell-right-text="{{personInfo.school || '未填写'}}" label-text="学校"></Cell>
+        <Cell cell-right-text="{{personInfo.tel || '未填写'}}" label-text="手机号码"></Cell>
+        <Cell cell-right-text="{{personInfo.email || '未填写'}}" label-text="邮箱"></Cell>
+    </CellGroup>
+    <CellGroup>
+        <Cell cell-right-text="{{personInfo.intro || '未填写'}}" is-need-border-top="{{false}}"  label-text="个性签名"></Cell>
+    </CellGroup>
+    <!--操作按钮-->
+    <view class="handle_con">
+        <button size="mini" type="primary">编辑</button>
+        <!--<button size="mini" bindtap="changeVal" type="primary">test</button>-->
+    </view>
+</view>
+<!--操作部分(这里不适用field组件,submit无法获取name属性)-->
+<view class="edit_container" wx:else>
+    <form bindsubmit="handleSubmit">
+        <CellGroup>
+            <Field label-text="姓名" field-name="name" bind:onchange="bindKeyInput"  placeholder="请输入姓名"></Field>
+            <Field label-text="昵称" field-name="nickName" bind:onchange="bindKeyInput"  placeholder="请输入昵称"></Field>
+            <Field label-text="性别" field-type="picker" field-name="gender"  placeholder="请选择性别">
+                <view slot="picker">
+                    <picker data-keytype="genderArrayObj" data-key="gender" bindchange="bindPickerChange" value="{{genderIndex}}" range="{{genderArray}}">
+                        <view class="picker">
+                            {{personInfo.gender}}
+                            {{genderArray[personInfo.gender] || '请选择性别'}}
+                        </view>
+                    </picker>
+                </view>
+            </Field>
+            <!--type  number无效？？？-->
+            <Field label-text="年龄" max-length="5" field-type="number"   field-name="age" bind:onchange="bindKeyInput"  placeholder="请输入年龄"></Field>
+            <Field label-text="生日" field-type="picker" field-name="birthday"   placeholder="请选择生日">
+                <view slot="picker">
+                    <!--范围可以设置为动态时间-->
+                    <picker mode="date" data-key="birthday" value="{{personInfo.birthday}}" start="2015-09-01" end="2018-1-19" bindchange="bindDateChange">
+                        <view class="picker">
+                            {{personInfo.birthday || '请选择生日'}}
+                        </view>
+                    </picker>
+                </view>
+            </Field>
+            <Field label-text="星座" field-type="picker" field-name="constellation"  placeholder="请选择星座">
+                <view slot="picker">
+                    <picker data-keytype="constellationArray" data-key="constellation" bindchange="bindPickerChange" value="{{constellationIndex}}" range="{{constellationArray}}">
+                        <view class="picker">
+                            {{personInfo.constellation || '请选择星座'}}
+                        </view>
+                    </picker>
+                </view>
+            </Field>
+        </CellGroup>
+
+        <CellGroup>
+            <Field label-text="公司" field-name="company" bind:onchange="bindKeyInput"  placeholder="请输入公司名"></Field>
+            <Field label-text="学校" field-name="school" bind:onchange="bindKeyInput"  placeholder="请输入学校名称"></Field>
+            <Field label-text="手机号码" maxlength="11" field-name="tel" bind:onchange="bindKeyInput"  placeholder="请输入手机号码"></Field>
+            <Field label-text="邮箱"  field-name="email" bind:onchange="bindKeyInput"  placeholder="请输入邮箱"></Field>
+        </CellGroup>
+
+        <CellGroup>
+            <Field label-text="个性签名" field-name="intro" bind:onchange="bindKeyInput"  placeholder="请输入个性签名"></Field>
+        </CellGroup>
+        <!--操作按钮-->
+        <view class="handle_con">
+            <button size="mini" form-type="submit" type="primary">保存</button>
+        </view>
+    </form>
+</view>
+
+

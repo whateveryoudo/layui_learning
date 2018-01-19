@@ -1,0 +1,35 @@
+<!--影片列表-->
+<template name="filmList">
+        <view class="film" >
+            <block wx:for="{{films}}" wx:for-index="filmIndex" wx:for-item="filmItem" wx:key="film">
+               <!--查看影片详情-->
+                <view data-id="{{filmItem.id}}" class="film-item" catchtap="viewFilmDetail">
+                    <!--海报块-->
+                    <view class="film-cover">
+                        <image src="{{filmItem.images.large}}" class="film-cover-img"></image>
+                        <view class="film-rating">
+                            <block wx:if="{{filmItem.rating.average == 0}}">暂无评分</block>
+                            <block wx:else>{{filmItem.rating.average}}分</block>
+                        </view>
+                    </view>
+                    <!--影片介绍-->
+                    <view class="file-intro">
+                        <view class="film-title">{{filmItem.title}}</view>
+                        <view class="film-tag">
+                            <!--标签集-->
+                            <view class="film-tag-item" wx:for="{{filmItem.genres}}" wx:for-item="filmTagItem" data-tag="{{filmTagItem}}">
+                                {{filmTagItem}}
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <!--加载更多 与 没有更多-->
+            <block wx:if="{{hasMore}}">
+                <view class="loading-tip">拼命加载中...</view>
+            </block>
+            <block wx:else>
+                <view class="loading-tip">没有更多内容了</view>
+            </block>
+        </view>
+</template>

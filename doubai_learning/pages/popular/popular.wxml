@@ -1,0 +1,23 @@
+<!--引入toast组件-->
+<import  src="../../components/Toast/Toast.wxml"/>
+<template is="toast" data="{{...$wux.toast}}"></template>
+<!--引入loading组件-->
+<!--<loading></loading>-->
+<import  src="../../components/Loading/Loading.wxml"/>
+<template is="loading" data="{{...$wux.loading}}"></template>
+<block >
+        <view class="search_bar">
+            <input type="text" placeholder-class="search-txt-plc" bindfocus="viewSearch" class="search_txt" placeholder="请输入关键词搜索" />
+        </view>
+        <swiper class="banner" indicator-dots='true' circular="true">
+            <block wx:for="{{bannerList}}" wx:for-item="bannerItem" wx:for-index="bannerIndex" wx:key="banner">
+                <swiper-item data-type="{{bannerItem.type}}" data-id="{{bannerItem.id}}" bindtap="viewBannerDetail">
+                    <image src="{{bannerItem.imgUrl}}" class="banner_item" alt=""></image>
+                </swiper-item>
+            </block>
+        </swiper>
+</block>
+
+<!--影片列表-->
+<import src="../../components/filmList/filmList.wxml"/>
+<template is="filmList" data="{{films,hasMore}}"/>

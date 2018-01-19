@@ -1,0 +1,57 @@
+.bg_wall_wrapper{
+    padding:20rpx;
+}
+.b_w_item_con{
+    position: relative;
+    border-radius: 20rpx;
+    overflow: hidden;
+    margin-top: 20rpx;
+}
+.b_w_item_con:first-child{
+    margin-top: 0;
+}
+/*选中样式*/
+.b_w_item_con.selected{
+    border:6rpx solid #47a86c;
+}
+.b_w_item_con.selected::before{
+    content: '';
+    display: block;
+    width: 160rpx;
+    height:160rpx;
+    top:-80rpx;
+    right:-80rpx;
+    transform: rotate(45deg);
+    background-color: #47a86c;
+    position: absolute;
+    z-index:4;
+}
+.b_w_item_con.selected::after{
+    content: '使用中';
+    display: block;
+    color:#fff;
+    top:15rpx;
+    right:3rpx;
+    z-index: 10;
+    transform: rotate(45deg);
+    background-color: #47a86c;
+    position: absolute;
+}
+
+
+.b_w_item_con image{
+    width:100%;
+    height:400rpx;
+    /*浏览器默认高度*/
+    vertical-align: bottom;
+    /*border-radius: 10rpx;*/
+}
+.b_w_item_con .des_mask{
+    position: absolute;
+    bottom:0;
+    width: 100%;
+    background: rgba(0,0,0,.3);
+    color:#fff;
+    padding:20rpx;
+    box-sizing: border-box;
+}

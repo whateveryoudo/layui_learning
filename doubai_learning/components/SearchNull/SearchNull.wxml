@@ -1,0 +1,12 @@
+<!--自定义搜索为空组件-->
+    <view class="null_tip_con">
+        <view class="tip">
+            {{nullObj.desText}}
+        </view>
+        <block wx:if="{{!nullObj.backUrl}}">
+            <view class="null_btn">{{nullObj.actionText}}</view>
+        </block>
+        <block wx:else>
+            <navigator class="null_btn" url="{{nullObj.backUrl}}">{{nullObj.actionText}}</navigator>
+        </block>
+    </view>

@@ -1,0 +1,21 @@
+<!--自定义搜索为空组件-->
+
+<view class="weui-cell">
+
+
+    <view class="weui-cell__bd">
+        <view>{{labelText}}</view>
+    </view>
+    <view class="weui-cell__ft">
+
+        <block wx:if="{{fieldType == 'picker'}}">
+            <slot name="picker"></slot>
+        </block>
+        <block wx:else>
+            <input type="{{fieldType}}" maxlength="{{maxLength}}" bindinput="handleInput" data-type="{{fieldName}}" placeholder="{{placeholder}}" />
+        </block>
+    </view>
+
+</view>
+
+

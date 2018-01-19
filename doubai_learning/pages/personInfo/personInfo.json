@@ -1,0 +1,9 @@
+{
+  "usingComponents" : {
+    "Cell" : "../../components/Cell/Cell",
+    "CellGroup" : "../../components/CellGroup/CellGroup",
+    "Field" : "../../components/Field/Field"
+  },
+  "navigationBarTitleText": "个人资料",
+  "enablePullDownRefresh": false
+}

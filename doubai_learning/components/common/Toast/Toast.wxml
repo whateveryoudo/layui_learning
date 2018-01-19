@@ -1,0 +1,10 @@
+<!--自定义Toast组件-->
+    <!--<view class="weui-toast-wrapper {{animateCss}} {{className}}" hidden="{{!visible}}">-->
+    <view class="weui-toast-wrapper">
+        <view class="weui-toast">
+
+            <!--<icon class="weui-icon_toast" type="{{type}}" size="55" color="{{color}}" />-->
+            <icon class="weui-icon_toast"size="55" />
+            <view class="weui-toast__content">26456</view>
+        </view>
+    </view>

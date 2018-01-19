@@ -21,24 +21,44 @@
     }
 </style>
 <body>
-<div  ms-controller="duplex1">
-<table border="1">
-    <tr>
-        <td><input type="checkbox"
-                   ms-duplex-checked="@allchecked"
-                   data-duplex-changed="@checkAll"/>全选</td>
-    </tr>
-    <tr ms-for="($index, el) in @data">
-        <td>
-            <div ms-click="@checkOne(el)" ms-class="el.checked && 'checked'" class="moni"></div>
+<!--<div  ms-controller="duplex1">-->
+<!--<table border="1">-->
+    <!--<tr>-->
+        <!--<td><input type="checkbox"-->
+                   <!--ms-duplex-checked="@allchecked"-->
+                   <!--data-duplex-changed="@checkAll"/>全选</td>-->
+    <!--</tr>-->
+    <!--<tr ms-for="($index, el) in @data">-->
+        <!--<td>-->
+            <!--<div ms-click="@checkOne(el)" ms-class="el.checked && 'checked'" class="moni"></div>-->
 
-    </tr>
-    <button ms-click="@aaa = '222'">点我看看</button>
-</table>
-    {{@selectedArr.length}}
-    <button ms-attr="[@selectedArr.length <= 0&& {disabled : 'disabled'}]">我是查看按钮</button>
+    <!--</tr>-->
+    <!--<button ms-click="@aaa = '222'">点我看看</button>-->
+<!--</table>-->
+    <!--{{@selectedArr().length}}-->
+    <!--<button ms-attr="[@selectedArr().length <= 0&& {disabled : 'disabled'}]">我是查看按钮</button>-->
+<!--</div>-->
+
+<!--vue-->
+
+<div  id="duplex1">
+    <table border="1">
+        <tr>
+            <td><input type="checkbox"
+                       ms-duplex-checked="@allchecked"
+                       data-duplex-changed="@checkAll"/>全选</td>
+        </tr>
+        <tr v-for="el in optData">
+            <td>
+                <div @click="checkOne(el)" :class="el.checked && 'checked'" class="moni"></div>
+
+        </tr>
+    </table>
+    {{selectedArr.length}}
+    <button :disabled="selectedArr.length <= 0">我是查看按钮</button>
 </div>
 </body>
-<script src="https://cdn.staticfile.org/avalon.js/2.2.4/avalon.js"></script>
+<script src="vue.js"></script>
+<!--<script src="https://cdn.staticfile.org/avalon.js/2.2.4/avalon.js"></script>-->
 <script src="computed.js"></script>
 </html>

@@ -1,0 +1,8 @@
+{
+  "usingComponents" : {
+    "Cell" : "../../components/Cell/Cell",
+    "CellGroup" : "../../components/CellGroup/CellGroup"
+  },
+  "navigationBarTitleText": "设置",
+  "enablePullDownRefresh": false
+}
